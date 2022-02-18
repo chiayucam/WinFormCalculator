@@ -13,9 +13,12 @@ namespace MyCalculator
         public override void Clicked()
         {
             decimal value = decimal.Parse(Text);
+            decimal tempValue = 0;
             //MessageBox.Show("NumberButton");
+            //States.IsOperatorNull() ? 
             States.NewOperand = States.NewOperand * 10 + value;
-            
+
+
         }
 
         public override void Display()

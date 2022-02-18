@@ -11,7 +11,8 @@ namespace MyCalculator
     {
         public virtual void CallMessegeBox()
         {
-            MessageBox.Show(this.Text);
+            //MessageBox.Show(this.Text);
+            Console.WriteLine(this.Text);
         }
 
         public virtual void Clicked()

@@ -9,10 +9,6 @@ namespace MyCalculator
 {
     class OperatorButton : CalculatorButton
     {
-        public OperatorButton() : base()
-        {
-
-        }
         public override void Clicked()
         {
             States.Operator = char.Parse(Text);

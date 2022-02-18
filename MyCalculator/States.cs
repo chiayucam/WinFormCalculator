@@ -19,7 +19,7 @@ namespace MyCalculator
         {
             return NewOperand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
-
+        
         public static string GetTextForOperationDisplay()
         {
             return Operator == NULL_CHAR ? string.Empty : $"{NewOperand.ToString(DECIMAL_TO_STRING_FORMAT)} {Operator.ToString()}";
@@ -28,6 +28,11 @@ namespace MyCalculator
         public static void ResetOperator()
         {
             Operator = NULL_CHAR;
+        }
+
+        public static bool IsOperatorNull()
+        {
+            return Operator == NULL_CHAR;
         }
     }
 }

@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CurrentDisplay = new System.Windows.Forms.Label();
-            this.OperationDisplay = new System.Windows.Forms.Label();
             this.Backspace = new MyCalculator.ClearButton();
             this.Clear = new MyCalculator.ClearButton();
             this.ClearEntry = new MyCalculator.ClearButton();
@@ -50,30 +48,9 @@
             this.NumpadTwo = new MyCalculator.NumberButton();
             this.NumpadOne = new MyCalculator.NumberButton();
             this.NumpadZero = new MyCalculator.NumberButton();
+            this.CurrentDisplay = new MyCalculator.CalculatorDisplay();
+            this.OperationDisplay = new MyCalculator.CalculatorDisplay();
             this.SuspendLayout();
-            // 
-            // CurrentDisplay
-            // 
-            this.CurrentDisplay.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CurrentDisplay.AutoEllipsis = true;
-            this.CurrentDisplay.Font = new System.Drawing.Font("Arial Unicode MS", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrentDisplay.Location = new System.Drawing.Point(33, 62);
-            this.CurrentDisplay.Name = "CurrentDisplay";
-            this.CurrentDisplay.Size = new System.Drawing.Size(302, 74);
-            this.CurrentDisplay.TabIndex = 0;
-            this.CurrentDisplay.Text = "0";
-            this.CurrentDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // OperationDisplay
-            // 
-            this.OperationDisplay.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.OperationDisplay.AutoEllipsis = true;
-            this.OperationDisplay.Font = new System.Drawing.Font("Arial Unicode MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.OperationDisplay.Location = new System.Drawing.Point(39, 21);
-            this.OperationDisplay.Name = "OperationDisplay";
-            this.OperationDisplay.Size = new System.Drawing.Size(285, 41);
-            this.OperationDisplay.TabIndex = 0;
-            this.OperationDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Backspace
             // 
@@ -295,11 +272,35 @@
             this.NumpadZero.UseVisualStyleBackColor = true;
             this.NumpadZero.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
+            // CurrentDisplay
+            // 
+            this.CurrentDisplay.AutoEllipsis = true;
+            this.CurrentDisplay.Font = new System.Drawing.Font("Arial Unicode MS", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.CurrentDisplay.Location = new System.Drawing.Point(12, 62);
+            this.CurrentDisplay.Name = "CurrentDisplay";
+            this.CurrentDisplay.Size = new System.Drawing.Size(338, 67);
+            this.CurrentDisplay.TabIndex = 4;
+            this.CurrentDisplay.Text = "0";
+            this.CurrentDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // OperationDisplay
+            // 
+            this.OperationDisplay.AutoEllipsis = true;
+            this.OperationDisplay.Font = new System.Drawing.Font("Arial Unicode MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.OperationDisplay.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.OperationDisplay.Location = new System.Drawing.Point(93, 23);
+            this.OperationDisplay.Name = "OperationDisplay";
+            this.OperationDisplay.Size = new System.Drawing.Size(244, 51);
+            this.OperationDisplay.TabIndex = 5;
+            this.OperationDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 481);
+            this.Controls.Add(this.OperationDisplay);
+            this.Controls.Add(this.CurrentDisplay);
             this.Controls.Add(this.Backspace);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.ClearEntry);
@@ -320,8 +321,6 @@
             this.Controls.Add(this.NumpadTwo);
             this.Controls.Add(this.NumpadOne);
             this.Controls.Add(this.NumpadZero);
-            this.Controls.Add(this.OperationDisplay);
-            this.Controls.Add(this.CurrentDisplay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CalculatorForm";
             this.Text = "小算盤";
@@ -330,9 +329,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label CurrentDisplay;
-        private System.Windows.Forms.Label OperationDisplay;
         private NumberButton NumpadZero;
         private NumberButton NumpadOne;
         private NumberButton NumpadTwo;
@@ -353,6 +349,8 @@
         private ClearButton Clear;
         private ClearButton Backspace;
         private OperatorButton Divide;
+        private CalculatorDisplay CurrentDisplay;
+        private CalculatorDisplay OperationDisplay;
     }
 }
 
