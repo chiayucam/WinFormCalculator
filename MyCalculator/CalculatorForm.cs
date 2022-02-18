@@ -20,10 +20,6 @@ namespace MyCalculator
             InitializeComponent();
         }
 
-        private string OperandState;
-        private string OperatorState;
-        private string CurrentValueState;
-
         /// <summary>
         /// 按鈕事件
         /// </summary>
@@ -31,10 +27,15 @@ namespace MyCalculator
         /// <param name="e"></param>
         private void CalculatorButtonOnClick(object sender, EventArgs e)
         {
-            var button = sender as Button;
-            MessageBox.Show("23123");
-            //sender.
+            CalculatorButton button = (CalculatorButton)sender; // what to cast?
+            //button.CallMessegeBox();
+            button.Clicked();
+
+            CurrentDisplay.Text = States.GetTextForCurrentDisplay();
+            OperationDisplay.Text = States.GetTextForOperationDisplay();
         }
+
+        
 
 
     }

@@ -9,7 +9,17 @@ namespace MyCalculator
 {
     class CalculatorButton : Button
     {
-        public CalculatorButton() : base()
+        public virtual void CallMessegeBox()
+        {
+            MessageBox.Show(this.Text);
+        }
+
+        public virtual void Clicked()
+        {
+
+        }
+
+        public virtual void Display()
         {
 
         }

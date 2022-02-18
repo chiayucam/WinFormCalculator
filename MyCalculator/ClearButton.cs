@@ -7,11 +7,15 @@ using System.Windows.Forms;
 
 namespace MyCalculator
 {
-    class ClearButton : Button
+    class ClearButton : CalculatorButton
     {
         public ClearButton() : base()
         {
 
+        }
+        public override void Clicked()
+        {
+            States.CurrentOperand = 0;
         }
     }
 }
