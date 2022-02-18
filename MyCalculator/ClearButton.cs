@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace MyCalculator
 {
-    class CalculatorButton : Button
+    class ClearButton : Button
     {
-        public CalculatorButton() : base()
+        public ClearButton() : base()
         {
 
         }

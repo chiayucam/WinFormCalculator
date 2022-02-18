@@ -58,10 +58,15 @@
     <Compile Include="CalculatorForm.Designer.cs">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClearButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NumberButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OperatorButton.cs" />
+    <Compile Include="OperatorButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CalculatorForm.resx">

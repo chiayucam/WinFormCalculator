@@ -7,26 +7,11 @@ using System.Windows.Forms;
 
 namespace MyCalculator
 {
-    public class NumberButton : Button
+    class NumberButton : Button
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        public NumberButton(int value)
+        public NumberButton() : base()
         {
-            Value = value;
+            
         }
-
-        public int Value;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void OnButtonClick()
-        {
-            //GetOperandState();
-        }
-
     }
 }

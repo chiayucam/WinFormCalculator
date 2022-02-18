@@ -31,11 +31,11 @@ namespace MyCalculator
         /// <param name="e"></param>
         private void CalculatorButtonOnClick(object sender, EventArgs e)
         {
-            var button = sender as NumberButton;
+            var button = sender as Button;
             MessageBox.Show("23123");
             //sender.
         }
 
-        
+
     }
 }
