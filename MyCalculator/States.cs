@@ -12,17 +12,21 @@ namespace MyCalculator
         public const char NULL_CHAR = '\0';
 
         public static char Operator = NULL_CHAR;
-        public static decimal NewOperand = 0m;
-        public static decimal CurrentOperand = 0m;
+        public static char LastOperator = NULL_CHAR;
+        public static decimal FirstOperand = 0m;
+        public static decimal SecondOperand = 0m;
+        public static decimal Result = 0m;
+        public static string CurrentDisplay = string.Empty;
+        public static string OperationDisplay = string.Empty;
         
         public static string GetTextForCurrentDisplay()
         {
-            return NewOperand.ToString(DECIMAL_TO_STRING_FORMAT);
+            return FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
         
         public static string GetTextForOperationDisplay()
         {
-            return Operator == NULL_CHAR ? string.Empty : $"{NewOperand.ToString(DECIMAL_TO_STRING_FORMAT)} {Operator.ToString()}";
+            return Operator == NULL_CHAR ? string.Empty : $"{FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT)} {Operator}";
         }
 
         public static void ResetOperator()
@@ -30,9 +34,52 @@ namespace MyCalculator
             Operator = NULL_CHAR;
         }
 
+        public static void ResetFirstOperand()
+        {
+            FirstOperand = 0m;
+        }
+        public static void ResetSecondOperand()
+        {
+            SecondOperand = 0m;
+        }
+        public static void ResetResult()
+        {
+            Result = 0m;
+        }
+
+        public static void ResetAll()
+        {
+            ResetOperator();
+            ResetFirstOperand();
+            ResetSecondOperand();
+            ResetResult();
+        }
+
         public static bool IsOperatorNull()
         {
             return Operator == NULL_CHAR;
         }
+
+
+        public static void SetOperand(decimal number)
+        {
+            if (IsOperatorNull())
+            {
+                States.FirstOperand = States.FirstOperand * 10 + number;
+            }
+            else
+            {
+                States.SecondOperand = States.SecondOperand * 10 + number;
+            }
+        }
+        public static void SetOperator(char _operator)
+        {
+            States.Operator = _operator;
+        }
+
+        
+
+
+
     }
 }

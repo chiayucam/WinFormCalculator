@@ -6,11 +6,41 @@ using System.Threading.Tasks;
 
 namespace MyCalculator
 {
-    class ArithmeticButton : OperatorButton
+    internal class ArithmeticButton : OperatorButton
     {
-        public override void Clicked()
+        private Dictionary<char, Func<decimal, decimal, decimal>> Operations = new Dictionary<char, Func<decimal, decimal, decimal>>()
         {
+            {'+', (firstOperand, secondOperand) => firstOperand + secondOperand},
+            {'-', (firstOperand, secondOperand) => firstOperand - secondOperand},
+            {'×', (firstOperand, secondOperand) => firstOperand * secondOperand},
+            {'÷', (firstOperand, secondOperand) => firstOperand / secondOperand}
+        };
+        
+        internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
+        {
+            
             States.Operator = char.Parse(Text);
+            States.Result = Operations[States.Operator](States.FirstOperand, States.SecondOperand);
+            currentDisplay.Text = GetTextForCurrentDisplay();
+            operationDisplay.Text = GetTextForOperationDisplay();
+            //States.ResetFirstOperand();
+            States.LastOperator = States.Operator;
         }
+
+        internal void UpdateDisplay()
+        {
+
+        }
+
+        internal override string GetTextForCurrentDisplay()
+        {
+            return States.Result.ToString(DECIMAL_TO_STRING_FORMAT);
+        }
+
+        internal override string GetTextForOperationDisplay()
+        {
+            return $"{States.Result.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
+        }
+
     }
 }

@@ -9,9 +9,19 @@ namespace MyCalculator
 {
     class OperatorButton : CalculatorButton
     {
-        public override void Clicked()
+        internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
             States.Operator = char.Parse(Text);
+        }
+
+        internal override string GetTextForCurrentDisplay()
+        {
+            return States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
+        }
+
+        internal override string GetTextForOperationDisplay()
+        {
+            return $"{States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
         }
     }
 }

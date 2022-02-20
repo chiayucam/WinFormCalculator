@@ -28,16 +28,12 @@ namespace MyCalculator
         private void CalculatorButtonOnClick(object sender, EventArgs e)
         {
             CalculatorButton button = (CalculatorButton)sender; // what to cast?
-            button.CallMessegeBox();
-            button.Clicked();
-
-            CurrentDisplay.Text = States.GetTextForCurrentDisplay();
-            OperationDisplay.Text = States.GetTextForOperationDisplay();
-            //CurrentDisplay.UpdateToScreen(button);
+            button.Clicked(CurrentDisplay, OperationDisplay);
+            //CurrentDisplay.UpdateDisplay(button.GetTextForCurrentDisplay());
+            //OperationDisplay.UpdateDisplay(button.GetTextForOperationDisplay());
+            Console.WriteLine($"{States.FirstOperand} {States.Operator} {States.SecondOperand} = {States.Result}");
+            //States.ResetNewOperand();
+            //CurrentDisplay.Update(button);
         }
-
-        
-
-
     }
 }

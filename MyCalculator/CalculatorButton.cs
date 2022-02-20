@@ -7,22 +7,25 @@ using System.Windows.Forms;
 
 namespace MyCalculator
 {
-    class CalculatorButton : Button
+    internal abstract class CalculatorButton : Button
     {
-        public virtual void CallMessegeBox()
+        protected const string DECIMAL_TO_STRING_FORMAT = "G29";
+        internal virtual void CallMessegeBox()
         {
             //MessageBox.Show(this.Text);
             Console.WriteLine(this.Text);
         }
 
-        public virtual void Clicked()
-        {
+        internal abstract void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay);
 
+        internal virtual string GetTextForCurrentDisplay()
+        {
+            return States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
 
-        public virtual void Display()
+        internal virtual string GetTextForOperationDisplay()
         {
-
+            return $"{States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
         }
     }
 }

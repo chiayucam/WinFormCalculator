@@ -10,20 +10,19 @@ namespace MyCalculator
 {
     class NumberButton : CalculatorButton
     {
-        public override void Clicked()
+        internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
-            decimal value = decimal.Parse(Text);
-            decimal tempValue = 0;
-            //MessageBox.Show("NumberButton");
-            //States.IsOperatorNull() ? 
-            States.NewOperand = States.NewOperand * 10 + value;
-
-
+            States.SecondOperand = States.Result;
+            decimal number = decimal.Parse(Text);
+            //States.SetOperand(number);
+            States.FirstOperand = States.FirstOperand * 10 + number;
+            currentDisplay.Text = GetTextForCurrentDisplay();
         }
 
-        public override void Display()
+        internal override string GetTextForCurrentDisplay()
         {
-            
+            return States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
+
     }
 }

@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace MyCalculator
 {
-    class CalculatorDisplay : Label
+    internal class CalculatorDisplay : Label
     {
-        public void UpdateToScreen()
+        internal void UpdateToScreen()
         {
-
+            
         }
     }
 }

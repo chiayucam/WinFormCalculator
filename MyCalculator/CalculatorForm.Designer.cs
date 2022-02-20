@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Backspace = new MyCalculator.ClearButton();
-            this.Clear = new MyCalculator.ClearButton();
-            this.ClearEntry = new MyCalculator.ClearButton();
+            this.Multiply = new MyCalculator.ArithmeticButton();
+            this.Divide = new MyCalculator.ArithmeticButton();
+            this.Subtract = new MyCalculator.ArithmeticButton();
+            this.Backspace = new MyCalculator.BackSpaceButton();
+            this.ClearAll = new MyCalculator.ClearAllButton();
+            this.ClearEntry = new MyCalculator.ClearEntryButton();
+            this.Add = new MyCalculator.ArithmeticButton();
+            this.OperationDisplay = new MyCalculator.OperationDisplay();
+            this.CurrentDisplay = new MyCalculator.CurrentDisplay();
             this.Equal = new MyCalculator.OperatorButton();
-            this.Divide = new MyCalculator.OperatorButton();
-            this.Multiply = new MyCalculator.OperatorButton();
-            this.Subtract = new MyCalculator.OperatorButton();
-            this.Add = new MyCalculator.OperatorButton();
             this.DecimalPoint = new MyCalculator.OperatorButton();
             this.Sign = new MyCalculator.OperatorButton();
             this.NumpadNine = new MyCalculator.NumberButton();
@@ -48,46 +50,108 @@
             this.NumpadTwo = new MyCalculator.NumberButton();
             this.NumpadOne = new MyCalculator.NumberButton();
             this.NumpadZero = new MyCalculator.NumberButton();
-            this.CurrentDisplay = new MyCalculator.CalculatorDisplay();
-            this.OperationDisplay = new MyCalculator.CalculatorDisplay();
             this.SuspendLayout();
+            // 
+            // Multiply
+            // 
+            this.Multiply.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Multiply.Location = new System.Drawing.Point(270, 219);
+            this.Multiply.Name = "Multiply";
+            this.Multiply.Size = new System.Drawing.Size(80, 60);
+            this.Multiply.TabIndex = 13;
+            this.Multiply.Text = "×";
+            this.Multiply.UseVisualStyleBackColor = true;
+            this.Multiply.Click += new System.EventHandler(this.CalculatorButtonOnClick);
+            // 
+            // Divide
+            // 
+            this.Divide.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Divide.Location = new System.Drawing.Point(270, 153);
+            this.Divide.Name = "Divide";
+            this.Divide.Size = new System.Drawing.Size(80, 60);
+            this.Divide.TabIndex = 13;
+            this.Divide.Text = "÷";
+            this.Divide.UseVisualStyleBackColor = true;
+            this.Divide.Click += new System.EventHandler(this.CalculatorButtonOnClick);
+            // 
+            // Subtract
+            // 
+            this.Subtract.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Subtract.Location = new System.Drawing.Point(270, 285);
+            this.Subtract.Name = "Subtract";
+            this.Subtract.Size = new System.Drawing.Size(80, 60);
+            this.Subtract.TabIndex = 12;
+            this.Subtract.Text = "-";
+            this.Subtract.UseVisualStyleBackColor = true;
+            this.Subtract.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // Backspace
             // 
-            this.Backspace.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Backspace.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Backspace.Location = new System.Drawing.Point(184, 153);
             this.Backspace.Name = "Backspace";
             this.Backspace.Size = new System.Drawing.Size(80, 60);
-            this.Backspace.TabIndex = 3;
+            this.Backspace.TabIndex = 11;
             this.Backspace.Text = "⌫";
             this.Backspace.UseVisualStyleBackColor = true;
             this.Backspace.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
-            // Clear
+            // ClearAll
             // 
-            this.Clear.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Clear.Location = new System.Drawing.Point(98, 153);
-            this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(80, 60);
-            this.Clear.TabIndex = 3;
-            this.Clear.Text = "C";
-            this.Clear.UseVisualStyleBackColor = true;
-            this.Clear.Click += new System.EventHandler(this.CalculatorButtonOnClick);
+            this.ClearAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearAll.Location = new System.Drawing.Point(98, 153);
+            this.ClearAll.Name = "ClearAll";
+            this.ClearAll.Size = new System.Drawing.Size(80, 60);
+            this.ClearAll.TabIndex = 10;
+            this.ClearAll.Text = "C";
+            this.ClearAll.UseVisualStyleBackColor = true;
+            this.ClearAll.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // ClearEntry
             // 
-            this.ClearEntry.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.ClearEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClearEntry.Location = new System.Drawing.Point(12, 153);
             this.ClearEntry.Name = "ClearEntry";
             this.ClearEntry.Size = new System.Drawing.Size(80, 60);
-            this.ClearEntry.TabIndex = 3;
+            this.ClearEntry.TabIndex = 9;
             this.ClearEntry.Text = "CE";
             this.ClearEntry.UseVisualStyleBackColor = true;
             this.ClearEntry.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
+            // Add
+            // 
+            this.Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Add.Location = new System.Drawing.Point(270, 351);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(80, 60);
+            this.Add.TabIndex = 8;
+            this.Add.Text = "+";
+            this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.CalculatorButtonOnClick);
+            // 
+            // OperationDisplay
+            // 
+            this.OperationDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OperationDisplay.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.OperationDisplay.Location = new System.Drawing.Point(12, 27);
+            this.OperationDisplay.Name = "OperationDisplay";
+            this.OperationDisplay.Size = new System.Drawing.Size(325, 47);
+            this.OperationDisplay.TabIndex = 7;
+            this.OperationDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CurrentDisplay
+            // 
+            this.CurrentDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CurrentDisplay.Location = new System.Drawing.Point(12, 74);
+            this.CurrentDisplay.Name = "CurrentDisplay";
+            this.CurrentDisplay.Size = new System.Drawing.Size(338, 71);
+            this.CurrentDisplay.TabIndex = 6;
+            this.CurrentDisplay.Text = "0";
+            this.CurrentDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Equal
             // 
-            this.Equal.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Equal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Equal.Location = new System.Drawing.Point(270, 417);
             this.Equal.Name = "Equal";
             this.Equal.Size = new System.Drawing.Size(80, 60);
@@ -96,53 +160,9 @@
             this.Equal.UseVisualStyleBackColor = true;
             this.Equal.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
-            // Divide
-            // 
-            this.Divide.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Divide.Location = new System.Drawing.Point(270, 153);
-            this.Divide.Name = "Divide";
-            this.Divide.Size = new System.Drawing.Size(80, 60);
-            this.Divide.TabIndex = 2;
-            this.Divide.Text = "÷";
-            this.Divide.UseVisualStyleBackColor = true;
-            this.Divide.Click += new System.EventHandler(this.CalculatorButtonOnClick);
-            // 
-            // Multiply
-            // 
-            this.Multiply.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Multiply.Location = new System.Drawing.Point(270, 219);
-            this.Multiply.Name = "Multiply";
-            this.Multiply.Size = new System.Drawing.Size(80, 60);
-            this.Multiply.TabIndex = 2;
-            this.Multiply.Text = "×";
-            this.Multiply.UseVisualStyleBackColor = true;
-            this.Multiply.Click += new System.EventHandler(this.CalculatorButtonOnClick);
-            // 
-            // Subtract
-            // 
-            this.Subtract.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Subtract.Location = new System.Drawing.Point(270, 285);
-            this.Subtract.Name = "Subtract";
-            this.Subtract.Size = new System.Drawing.Size(80, 60);
-            this.Subtract.TabIndex = 2;
-            this.Subtract.Text = "-";
-            this.Subtract.UseVisualStyleBackColor = true;
-            this.Subtract.Click += new System.EventHandler(this.CalculatorButtonOnClick);
-            // 
-            // Add
-            // 
-            this.Add.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Add.Location = new System.Drawing.Point(270, 351);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(80, 60);
-            this.Add.TabIndex = 2;
-            this.Add.Text = "+";
-            this.Add.UseVisualStyleBackColor = true;
-            this.Add.Click += new System.EventHandler(this.CalculatorButtonOnClick);
-            // 
             // DecimalPoint
             // 
-            this.DecimalPoint.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.DecimalPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.DecimalPoint.Location = new System.Drawing.Point(184, 417);
             this.DecimalPoint.Name = "DecimalPoint";
             this.DecimalPoint.Size = new System.Drawing.Size(80, 60);
@@ -153,7 +173,7 @@
             // 
             // Sign
             // 
-            this.Sign.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Sign.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Sign.Location = new System.Drawing.Point(12, 417);
             this.Sign.Name = "Sign";
             this.Sign.Size = new System.Drawing.Size(80, 60);
@@ -164,7 +184,7 @@
             // 
             // NumpadNine
             // 
-            this.NumpadNine.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadNine.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadNine.Location = new System.Drawing.Point(184, 219);
             this.NumpadNine.Name = "NumpadNine";
             this.NumpadNine.Size = new System.Drawing.Size(80, 60);
@@ -175,7 +195,7 @@
             // 
             // NumpadEight
             // 
-            this.NumpadEight.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadEight.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadEight.Location = new System.Drawing.Point(98, 219);
             this.NumpadEight.Name = "NumpadEight";
             this.NumpadEight.Size = new System.Drawing.Size(80, 60);
@@ -186,7 +206,7 @@
             // 
             // NumpadSeven
             // 
-            this.NumpadSeven.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadSeven.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadSeven.Location = new System.Drawing.Point(12, 219);
             this.NumpadSeven.Name = "NumpadSeven";
             this.NumpadSeven.Size = new System.Drawing.Size(80, 60);
@@ -197,7 +217,7 @@
             // 
             // NumpadSix
             // 
-            this.NumpadSix.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadSix.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadSix.Location = new System.Drawing.Point(184, 285);
             this.NumpadSix.Name = "NumpadSix";
             this.NumpadSix.Size = new System.Drawing.Size(80, 60);
@@ -208,7 +228,7 @@
             // 
             // NumpadFive
             // 
-            this.NumpadFive.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadFive.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadFive.Location = new System.Drawing.Point(98, 285);
             this.NumpadFive.Name = "NumpadFive";
             this.NumpadFive.Size = new System.Drawing.Size(80, 60);
@@ -219,7 +239,7 @@
             // 
             // NumpadFour
             // 
-            this.NumpadFour.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadFour.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadFour.Location = new System.Drawing.Point(12, 285);
             this.NumpadFour.Name = "NumpadFour";
             this.NumpadFour.Size = new System.Drawing.Size(80, 60);
@@ -230,7 +250,7 @@
             // 
             // NumpadThree
             // 
-            this.NumpadThree.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadThree.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadThree.Location = new System.Drawing.Point(184, 351);
             this.NumpadThree.Name = "NumpadThree";
             this.NumpadThree.Size = new System.Drawing.Size(80, 60);
@@ -241,7 +261,7 @@
             // 
             // NumpadTwo
             // 
-            this.NumpadTwo.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadTwo.Location = new System.Drawing.Point(98, 351);
             this.NumpadTwo.Name = "NumpadTwo";
             this.NumpadTwo.Size = new System.Drawing.Size(80, 60);
@@ -252,7 +272,7 @@
             // 
             // NumpadOne
             // 
-            this.NumpadOne.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadOne.Location = new System.Drawing.Point(12, 351);
             this.NumpadOne.Name = "NumpadOne";
             this.NumpadOne.Size = new System.Drawing.Size(80, 60);
@@ -263,7 +283,7 @@
             // 
             // NumpadZero
             // 
-            this.NumpadZero.Font = new System.Drawing.Font("Arial Unicode MS", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.NumpadZero.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.NumpadZero.Location = new System.Drawing.Point(98, 417);
             this.NumpadZero.Name = "NumpadZero";
             this.NumpadZero.Size = new System.Drawing.Size(80, 60);
@@ -272,43 +292,21 @@
             this.NumpadZero.UseVisualStyleBackColor = true;
             this.NumpadZero.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
-            // CurrentDisplay
-            // 
-            this.CurrentDisplay.AutoEllipsis = true;
-            this.CurrentDisplay.Font = new System.Drawing.Font("Arial Unicode MS", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.CurrentDisplay.Location = new System.Drawing.Point(12, 62);
-            this.CurrentDisplay.Name = "CurrentDisplay";
-            this.CurrentDisplay.Size = new System.Drawing.Size(338, 67);
-            this.CurrentDisplay.TabIndex = 4;
-            this.CurrentDisplay.Text = "0";
-            this.CurrentDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // OperationDisplay
-            // 
-            this.OperationDisplay.AutoEllipsis = true;
-            this.OperationDisplay.Font = new System.Drawing.Font("Arial Unicode MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.OperationDisplay.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.OperationDisplay.Location = new System.Drawing.Point(93, 23);
-            this.OperationDisplay.Name = "OperationDisplay";
-            this.OperationDisplay.Size = new System.Drawing.Size(244, 51);
-            this.OperationDisplay.TabIndex = 5;
-            this.OperationDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 481);
+            this.Controls.Add(this.Multiply);
+            this.Controls.Add(this.Divide);
+            this.Controls.Add(this.Subtract);
+            this.Controls.Add(this.Backspace);
+            this.Controls.Add(this.ClearAll);
+            this.Controls.Add(this.ClearEntry);
+            this.Controls.Add(this.Add);
             this.Controls.Add(this.OperationDisplay);
             this.Controls.Add(this.CurrentDisplay);
-            this.Controls.Add(this.Backspace);
-            this.Controls.Add(this.Clear);
-            this.Controls.Add(this.ClearEntry);
             this.Controls.Add(this.Equal);
-            this.Controls.Add(this.Divide);
-            this.Controls.Add(this.Multiply);
-            this.Controls.Add(this.Subtract);
-            this.Controls.Add(this.Add);
             this.Controls.Add(this.DecimalPoint);
             this.Controls.Add(this.Sign);
             this.Controls.Add(this.NumpadNine);
@@ -341,16 +339,16 @@
         private NumberButton NumpadNine;
         private OperatorButton Sign;
         private OperatorButton DecimalPoint;
-        private OperatorButton Add;
-        private OperatorButton Subtract;
-        private OperatorButton Multiply;
         private OperatorButton Equal;
-        private ClearButton ClearEntry;
-        private ClearButton Clear;
-        private ClearButton Backspace;
-        private OperatorButton Divide;
-        private CalculatorDisplay CurrentDisplay;
-        private CalculatorDisplay OperationDisplay;
+        private CurrentDisplay CurrentDisplay;
+        private OperationDisplay OperationDisplay;
+        private ArithmeticButton Add;
+        private ClearEntryButton ClearEntry;
+        private ClearAllButton ClearAll;
+        private BackSpaceButton Backspace;
+        private ArithmeticButton Subtract;
+        private ArithmeticButton Divide;
+        private ArithmeticButton Multiply;
     }
 }
 
