@@ -19,6 +19,8 @@ namespace MyCalculator
             currentDisplay.Text = GetTextForCurrentDisplay();
         }
 
+        
+
         internal override string GetTextForCurrentDisplay()
         {
             return States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);

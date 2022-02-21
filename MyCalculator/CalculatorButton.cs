@@ -10,9 +10,9 @@ namespace MyCalculator
     internal abstract class CalculatorButton : Button
     {
         protected const string DECIMAL_TO_STRING_FORMAT = "G29";
+
         internal virtual void CallMessegeBox()
         {
-            //MessageBox.Show(this.Text);
             Console.WriteLine(this.Text);
         }
 

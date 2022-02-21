@@ -12,13 +12,20 @@ namespace MyCalculator
         public const char NULL_CHAR = '\0';
 
         public static char Operator = NULL_CHAR;
-        public static char LastOperator = NULL_CHAR;
         public static decimal FirstOperand = 0m;
         public static decimal SecondOperand = 0m;
         public static decimal Result = 0m;
         public static string CurrentDisplay = string.Empty;
         public static string OperationDisplay = string.Empty;
+
+        public static Queue<decimal> OperandQueue = new Queue<decimal>();
+        public static Stack<char> OperatorStack = new Stack<char>();
         
+        public static bool IsOperatorStackEmpty()
+        {
+            return OperatorStack.Count == 0;
+        }
+
         public static string GetTextForCurrentDisplay()
         {
             return FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
@@ -53,6 +60,7 @@ namespace MyCalculator
             ResetFirstOperand();
             ResetSecondOperand();
             ResetResult();
+            States.OperandQueue.Clear();
         }
 
         public static bool IsOperatorNull()
@@ -60,6 +68,10 @@ namespace MyCalculator
             return Operator == NULL_CHAR;
         }
 
+        public static bool IsOperationValid()
+        {
+            return States.OperandQueue.Count == 2 && States.OperatorStack.Count == 1;
+        }
 
         public static void SetOperand(decimal number)
         {
@@ -78,6 +90,8 @@ namespace MyCalculator
         }
 
         
+
+
 
 
 
