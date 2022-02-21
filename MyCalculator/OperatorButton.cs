@@ -16,12 +16,12 @@ namespace MyCalculator
 
         internal override string GetTextForCurrentDisplay()
         {
-            return States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
+            return States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
 
         internal override string GetTextForOperationDisplay()
         {
-            return $"{States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
+            return $"{States.Operand.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
         }
     }
 }

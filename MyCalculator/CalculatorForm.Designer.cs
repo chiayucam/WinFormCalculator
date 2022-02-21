@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.Sign = new MyCalculator.SignButton();
             this.Multiply = new MyCalculator.ArithmeticButton();
             this.Divide = new MyCalculator.ArithmeticButton();
             this.Subtract = new MyCalculator.ArithmeticButton();
@@ -39,7 +40,6 @@
             this.CurrentDisplay = new MyCalculator.CurrentDisplay();
             this.Equal = new MyCalculator.OperatorButton();
             this.DecimalPoint = new MyCalculator.OperatorButton();
-            this.Sign = new MyCalculator.OperatorButton();
             this.NumpadNine = new MyCalculator.NumberButton();
             this.NumpadEight = new MyCalculator.NumberButton();
             this.NumpadSeven = new MyCalculator.NumberButton();
@@ -51,6 +51,17 @@
             this.NumpadOne = new MyCalculator.NumberButton();
             this.NumpadZero = new MyCalculator.NumberButton();
             this.SuspendLayout();
+            // 
+            // Sign
+            // 
+            this.Sign.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sign.Location = new System.Drawing.Point(12, 417);
+            this.Sign.Name = "Sign";
+            this.Sign.Size = new System.Drawing.Size(80, 60);
+            this.Sign.TabIndex = 14;
+            this.Sign.Text = "+/-";
+            this.Sign.UseVisualStyleBackColor = true;
+            this.Sign.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // Multiply
             // 
@@ -171,17 +182,6 @@
             this.DecimalPoint.UseVisualStyleBackColor = true;
             this.DecimalPoint.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
-            // Sign
-            // 
-            this.Sign.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Sign.Location = new System.Drawing.Point(12, 417);
-            this.Sign.Name = "Sign";
-            this.Sign.Size = new System.Drawing.Size(80, 60);
-            this.Sign.TabIndex = 2;
-            this.Sign.Text = "+/-";
-            this.Sign.UseVisualStyleBackColor = true;
-            this.Sign.Click += new System.EventHandler(this.CalculatorButtonOnClick);
-            // 
             // NumpadNine
             // 
             this.NumpadNine.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -297,6 +297,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 481);
+            this.Controls.Add(this.Sign);
             this.Controls.Add(this.Multiply);
             this.Controls.Add(this.Divide);
             this.Controls.Add(this.Subtract);
@@ -308,7 +309,6 @@
             this.Controls.Add(this.CurrentDisplay);
             this.Controls.Add(this.Equal);
             this.Controls.Add(this.DecimalPoint);
-            this.Controls.Add(this.Sign);
             this.Controls.Add(this.NumpadNine);
             this.Controls.Add(this.NumpadEight);
             this.Controls.Add(this.NumpadSeven);
@@ -337,7 +337,6 @@
         private NumberButton NumpadSeven;
         private NumberButton NumpadEight;
         private NumberButton NumpadNine;
-        private OperatorButton Sign;
         private OperatorButton DecimalPoint;
         private OperatorButton Equal;
         private CurrentDisplay CurrentDisplay;
@@ -349,6 +348,7 @@
         private ArithmeticButton Subtract;
         private ArithmeticButton Divide;
         private ArithmeticButton Multiply;
+        private SignButton Sign;
     }
 }
 

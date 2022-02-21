@@ -20,12 +20,12 @@ namespace MyCalculator
 
         internal virtual string GetTextForCurrentDisplay()
         {
-            return States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
+            return States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
 
         internal virtual string GetTextForOperationDisplay()
         {
-            return $"{States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
+            return $"{States.Operand.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
         }
     }
 }

@@ -87,6 +87,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="States.cs" />
     <EmbeddedResource Include="CalculatorForm.resx">
       <DependentUpon>CalculatorForm.cs</DependentUpon>

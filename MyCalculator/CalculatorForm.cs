@@ -29,9 +29,8 @@ namespace MyCalculator
         {
             CalculatorButton button = (CalculatorButton)sender; // what to cast?
             button.Clicked(CurrentDisplay, OperationDisplay);
-            //CurrentDisplay.UpdateDisplay(button.GetTextForCurrentDisplay());
-            //OperationDisplay.UpdateDisplay(button.GetTextForOperationDisplay());
-            Console.WriteLine($"{States.FirstOperand} {States.Operator} {States.SecondOperand} = {States.Result}");
+            States.LastButtonType = button.GetType();
+            Console.WriteLine($"{States.Operand} {States.Operator} = {States.Result} {States.LastButtonType}");
             //States.ResetNewOperand();
             //CurrentDisplay.Update(button);
         }

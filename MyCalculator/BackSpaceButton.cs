@@ -10,19 +10,15 @@ namespace MyCalculator
     {
         internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
-            States.ResetAll();
+            string operandString = States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
+            operandString = operandString.Length == 1 ? "0" : operandString.Remove(operandString.Length - 1);
+            States.Operand = decimal.Parse(operandString);
             currentDisplay.Text = GetTextForCurrentDisplay();
-            operationDisplay.Text = GetTextForOperationDisplay();
         }
 
         internal override string GetTextForCurrentDisplay()
         {
-            return States.FirstOperand.ToString(DECIMAL_TO_STRING_FORMAT);
-        }
-
-        internal override string GetTextForOperationDisplay()
-        {
-            return String.Empty;
+            return States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
     }
 }
