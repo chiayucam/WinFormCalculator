@@ -27,7 +27,8 @@ namespace MyCalculator
         /// <param name="operationDisplay">上排顯示</param>
         internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
-            // 傳入運算子
+            // TODO: 重複點擊等號，相同操作
+            // 傳入等號
             char equalChar = char.Parse(Text);
             
             // 將運算元放入queue中
@@ -41,10 +42,10 @@ namespace MyCalculator
             {
                 States.OperandQueue.Enqueue(States.Result);
             }
-            Console.WriteLine(States.OperandQueue.Peek());
 
             // 顯示結果到display
             currentDisplay.Text = GetTextForCurrentDisplay();
+            // TODO: 上排顯示完整運算式 a+b=
             operationDisplay.Text = GetTextForOperationDisplay();
             States.ResetOperand();
         }
@@ -64,7 +65,7 @@ namespace MyCalculator
         /// <returns>上排顯示的字串</returns>
         internal override string GetTextForOperationDisplay()
         {
-            return $"{States.Result.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator} = ";
+            return $"{States.Operand} {States.Operator} = {States.Result.ToString(DECIMAL_TO_STRING_FORMAT)} ";
         }
     }
 }

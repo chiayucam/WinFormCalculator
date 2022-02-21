@@ -44,7 +44,7 @@ namespace MyCalculator
                 States.OperandQueue.Enqueue(States.Result);
             }
             States.OperatorStack.Push(States.Operator);
-            
+
             // 顯示結果到display
             currentDisplay.Text = GetTextForCurrentDisplay();
             operationDisplay.Text = GetTextForOperationDisplay();

@@ -18,6 +18,7 @@ namespace MyCalculator
         /// <param name="operationDisplay">上排顯示</param>
         internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
+            // TODO: 點擊運算子後不做動作
             string operandString = States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
             operandString = operandString.Length == 1 ? "0" : operandString.Remove(operandString.Length - 1);
             States.Operand = decimal.Parse(operandString);

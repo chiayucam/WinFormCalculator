@@ -18,6 +18,7 @@ namespace MyCalculator
         /// <param name="operationDisplay">上排顯示</param>
         internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
+            // TODO: .0顯示不出來
             States.IsDecimalPointActive = true;
             //States.Operand += 0.0m;
             currentDisplay.Text = GetTextForCurrentDisplay() + ".";
