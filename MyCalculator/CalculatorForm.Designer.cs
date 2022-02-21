@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.DecimalPoint = new MyCalculator.DecimalPointButton();
             this.Sign = new MyCalculator.SignButton();
             this.Multiply = new MyCalculator.ArithmeticButton();
             this.Divide = new MyCalculator.ArithmeticButton();
@@ -38,8 +39,6 @@
             this.Add = new MyCalculator.ArithmeticButton();
             this.OperationDisplay = new MyCalculator.OperationDisplay();
             this.CurrentDisplay = new MyCalculator.CurrentDisplay();
-            this.Equal = new MyCalculator.OperatorButton();
-            this.DecimalPoint = new MyCalculator.OperatorButton();
             this.NumpadNine = new MyCalculator.NumberButton();
             this.NumpadEight = new MyCalculator.NumberButton();
             this.NumpadSeven = new MyCalculator.NumberButton();
@@ -50,7 +49,19 @@
             this.NumpadTwo = new MyCalculator.NumberButton();
             this.NumpadOne = new MyCalculator.NumberButton();
             this.NumpadZero = new MyCalculator.NumberButton();
+            this.Equal = new MyCalculator.EqualButton();
             this.SuspendLayout();
+            // 
+            // DecimalPoint
+            // 
+            this.DecimalPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DecimalPoint.Location = new System.Drawing.Point(184, 417);
+            this.DecimalPoint.Name = "DecimalPoint";
+            this.DecimalPoint.Size = new System.Drawing.Size(80, 60);
+            this.DecimalPoint.TabIndex = 15;
+            this.DecimalPoint.Text = ".";
+            this.DecimalPoint.UseVisualStyleBackColor = true;
+            this.DecimalPoint.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // Sign
             // 
@@ -159,28 +170,6 @@
             this.CurrentDisplay.TabIndex = 6;
             this.CurrentDisplay.Text = "0";
             this.CurrentDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Equal
-            // 
-            this.Equal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Equal.Location = new System.Drawing.Point(270, 417);
-            this.Equal.Name = "Equal";
-            this.Equal.Size = new System.Drawing.Size(80, 60);
-            this.Equal.TabIndex = 2;
-            this.Equal.Text = "=";
-            this.Equal.UseVisualStyleBackColor = true;
-            this.Equal.Click += new System.EventHandler(this.CalculatorButtonOnClick);
-            // 
-            // DecimalPoint
-            // 
-            this.DecimalPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.DecimalPoint.Location = new System.Drawing.Point(184, 417);
-            this.DecimalPoint.Name = "DecimalPoint";
-            this.DecimalPoint.Size = new System.Drawing.Size(80, 60);
-            this.DecimalPoint.TabIndex = 2;
-            this.DecimalPoint.Text = ".";
-            this.DecimalPoint.UseVisualStyleBackColor = true;
-            this.DecimalPoint.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // NumpadNine
             // 
@@ -292,11 +281,24 @@
             this.NumpadZero.UseVisualStyleBackColor = true;
             this.NumpadZero.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
+            // Equal
+            // 
+            this.Equal.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Equal.Location = new System.Drawing.Point(270, 417);
+            this.Equal.Name = "Equal";
+            this.Equal.Size = new System.Drawing.Size(80, 60);
+            this.Equal.TabIndex = 16;
+            this.Equal.Text = "=";
+            this.Equal.UseVisualStyleBackColor = true;
+            this.Equal.Click += new System.EventHandler(this.CalculatorButtonOnClick);
+            // 
             // CalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 481);
+            this.Controls.Add(this.Equal);
+            this.Controls.Add(this.DecimalPoint);
             this.Controls.Add(this.Sign);
             this.Controls.Add(this.Multiply);
             this.Controls.Add(this.Divide);
@@ -307,8 +309,6 @@
             this.Controls.Add(this.Add);
             this.Controls.Add(this.OperationDisplay);
             this.Controls.Add(this.CurrentDisplay);
-            this.Controls.Add(this.Equal);
-            this.Controls.Add(this.DecimalPoint);
             this.Controls.Add(this.NumpadNine);
             this.Controls.Add(this.NumpadEight);
             this.Controls.Add(this.NumpadSeven);
@@ -337,8 +337,6 @@
         private NumberButton NumpadSeven;
         private NumberButton NumpadEight;
         private NumberButton NumpadNine;
-        private OperatorButton DecimalPoint;
-        private OperatorButton Equal;
         private CurrentDisplay CurrentDisplay;
         private OperationDisplay OperationDisplay;
         private ArithmeticButton Add;
@@ -349,6 +347,8 @@
         private ArithmeticButton Divide;
         private ArithmeticButton Multiply;
         private SignButton Sign;
+        private DecimalPointButton DecimalPoint;
+        private EqualButton Equal;
     }
 }
 

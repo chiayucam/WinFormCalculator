@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace MyCalculator
 {
     /// <summary>
-    /// 退格按鈕，繼承CalculatorButton
+    /// 小數點按鈕，繼承CalculatorButton
     /// </summary>
-    internal class BackSpaceButton : CalculatorButton
+    internal class DecimalPointButton : CalculatorButton
     {
         /// <summary>
         /// 覆寫按鈕被點擊後呼叫的方法
@@ -18,10 +18,9 @@ namespace MyCalculator
         /// <param name="operationDisplay">上排顯示</param>
         internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
-            string operandString = States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
-            operandString = operandString.Length == 1 ? "0" : operandString.Remove(operandString.Length - 1);
-            States.Operand = decimal.Parse(operandString);
-            currentDisplay.Text = GetTextForCurrentDisplay();
+            States.IsDecimalPointActive = true;
+            //States.Operand += 0.0m;
+            currentDisplay.Text = GetTextForCurrentDisplay() + ".";
         }
 
         /// <summary>

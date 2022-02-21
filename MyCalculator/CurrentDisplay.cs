@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyCalculator
 {
+    /// <summary>
+    /// 計算機下排顯示，繼承自CalculatorDisplay
+    /// </summary>
     internal class CurrentDisplay : CalculatorDisplay
     {
-
-        public void UpdateDisplay(string text)
-        {
-            Text = text;
-        }
-
-        public void UpdateDisplay(bool holder)
-        {
-        }
     }
 }

@@ -10,10 +10,13 @@ using System.Windows.Forms;
 
 namespace MyCalculator
 {
+    /// <summary>
+    /// 計算機Form
+    /// </summary>
     public partial class CalculatorForm : Form
     {
         /// <summary>
-        /// 
+        /// 初始化元件
         /// </summary>
         public CalculatorForm()
         {
@@ -24,15 +27,13 @@ namespace MyCalculator
         /// 按鈕事件
         /// </summary>
         /// <param name="sender">傳送的button物件</param>
-        /// <param name="e"></param>
+        /// <param name="e">事件參數</param>
         private void CalculatorButtonOnClick(object sender, EventArgs e)
         {
-            CalculatorButton button = (CalculatorButton)sender; // what to cast?
+            CalculatorButton button = (CalculatorButton)sender;
             button.Clicked(CurrentDisplay, OperationDisplay);
             States.LastButtonType = button.GetType();
             Console.WriteLine($"{States.Operand} {States.Operator} = {States.Result} {States.LastButtonType}");
-            //States.ResetNewOperand();
-            //CurrentDisplay.Update(button);
         }
     }
 }

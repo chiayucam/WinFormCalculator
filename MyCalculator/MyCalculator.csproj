@@ -76,13 +76,16 @@
     <Compile Include="CurrentDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DecimalPointButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EqualButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="NumberButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="OperationDisplay.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="OperatorButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
