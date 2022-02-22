@@ -14,13 +14,23 @@ namespace MyCalculator
         /// <summary>
         /// 算數方法字典
         /// </summary>
-        // TODO: 除以零例外處理
         private Dictionary<char, Func<decimal, decimal, decimal>> Operations = new Dictionary<char, Func<decimal, decimal, decimal>>()
         {
             {'+', (firstOperand, secondOperand) => firstOperand + secondOperand},
             {'-', (firstOperand, secondOperand) => firstOperand - secondOperand},
             {'×', (firstOperand, secondOperand) => firstOperand * secondOperand},
-            {'÷', (firstOperand, secondOperand) => firstOperand / secondOperand}
+            {'÷', (firstOperand, secondOperand) => 
+                {
+                    try
+                    {
+                        return firstOperand / secondOperand;
+                    }
+                    catch (DivideByZeroException)
+                    {
+                        return 0;
+                    }
+                }
+            }
         };
 
         /// <summary>
@@ -38,7 +48,7 @@ namespace MyCalculator
 
             // 如運算式成立(queue有兩個運算元、stack有一個運算子)從Operations執行對應的運算並且清空queue、stack，如不成立複製運算元到Result等待顯示
             States.Result = States.IsOperationValid() ? Operations[States.OperatorStack.Pop()](States.OperandQueue.Dequeue(), States.OperandQueue.Dequeue()) : States.Operand;
-            // TODO: 不知怎麼不用if 改成不用if
+            // TODO: 改成不用if
             if (States.OperandQueue.Count == 0) 
             {
                 States.OperandQueue.Enqueue(States.Result);

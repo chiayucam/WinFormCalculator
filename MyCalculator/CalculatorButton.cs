@@ -15,7 +15,7 @@ namespace MyCalculator
         /// <summary>
         /// decimal到string轉換格式
         /// </summary>
-        protected const string DECIMAL_TO_STRING_FORMAT = "G29";
+        protected const string DECIMAL_TO_STRING_FORMAT = "G12";
 
         /// <summary>
         /// 按鈕被點擊後呼叫的方法

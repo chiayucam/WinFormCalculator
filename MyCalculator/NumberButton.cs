@@ -11,7 +11,7 @@ namespace MyCalculator
     /// <summary>
     /// 0-9數字按鈕，繼承CalculatorButton
     /// </summary>
-    class NumberButton : CalculatorButton
+    internal class NumberButton : CalculatorButton
     {
         /// <summary>
         /// 覆寫按鈕被點擊後呼叫的方法
@@ -20,25 +20,20 @@ namespace MyCalculator
         /// <param name="operationDisplay">上排顯示</param>
         internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
-            //decimal number = decimal.Parse(Text);
-            //States.Operand = States.Operand >= 0 ? States.Operand * 10 + number : States.Operand * 10 - number;
-            //currentDisplay.Text = GetTextForCurrentDisplay();
-
             decimal number = decimal.Parse(Text);
-            // TODO: 不知怎麼不用if 改成不用if
+            // TODO: 改成不用if
             if (States.IsDecimalPointActive)
             {
-                States.Operand = States.Operand >= 0 ? States.Operand + number * (decimal)Math.Pow(0.1, States.DecimalPointPositionCounter) : States.Operand + number * (decimal)Math.Pow(0.1, States.DecimalPointPositionCounter);
+                States.Operand = States.Operand >= 0 
+                               ? States.Operand + (number * (decimal)Math.Pow(0.1, States.DecimalPointPositionCounter)) 
+                               : States.Operand - (number * (decimal)Math.Pow(0.1, States.DecimalPointPositionCounter));
                 States.DecimalPointPositionCounter += 1;
             }
             else
             {
-                States.Operand = States.Operand >= 0 ? States.Operand * 10 + number : States.Operand * 10 - number;
+                States.Operand = States.Operand >= 0 ? (States.Operand * 10) + number : (States.Operand * 10) - number;
             }
             currentDisplay.Text = GetTextForCurrentDisplay();
-
-            //States.Operand = decimal.Parse(States.Operand.ToString(DECIMAL_TO_STRING_FORMAT) + Text);
-            //currentDisplay.Text = GetTextForCurrentDisplay();
         }
 
         /// <summary>

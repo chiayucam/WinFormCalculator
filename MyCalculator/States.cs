@@ -11,8 +11,6 @@ namespace MyCalculator
     /// </summary>
     public static class States
     {
-        //public const string DECIMAL_TO_STRING_FORMAT = "G29";
-
         /// <summary>
         /// 常數null字元
         /// </summary>
@@ -21,42 +19,42 @@ namespace MyCalculator
         /// <summary>
         /// 運算子，初始為null
         /// </summary>
-        public static char Operator = NULL_CHAR;
+        public static char Operator { get; set; } = NULL_CHAR;
 
         /// <summary>
         /// 運算元，初始為0.
         /// </summary>
-        public static decimal Operand = 0m;
+        public static decimal Operand { get; set; } = 0m;
 
         /// <summary>
         /// 運算結果，初始為0.
         /// </summary>
-        public static decimal Result = 0m;
+        public static decimal Result { get; set; } = 0m;
 
         /// <summary>
         /// 運算元佇列(儲存二元運算)
         /// </summary>
-        public static Queue<decimal> OperandQueue = new Queue<decimal>();
+        public static Queue<decimal> OperandQueue { get; set; } = new Queue<decimal>();
 
         /// <summary>
         /// 運算子堆疊
         /// </summary>
-        public static Stack<char> OperatorStack = new Stack<char>();
+        public static Stack<char> OperatorStack { get; set; } = new Stack<char>();
 
         /// <summary>
         /// 上次按鈕點擊事件的型別
         /// </summary>
-        public static Type LastButtonType;
+        public static Type LastButtonType { get; set; }
 
         /// <summary>
         /// 是否有小數點
         /// </summary>
-        public static bool IsDecimalPointActive = false;
+        public static bool IsDecimalPointActive { get; set; } = false;
 
         /// <summary>
         /// 小數後位數
         /// </summary>
-        public static int DecimalPointPositionCounter = 1;
+        public static int DecimalPointPositionCounter { get; set; } = 1;
         
         /// <summary>
         /// 重置運算子

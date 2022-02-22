@@ -11,13 +11,5 @@ namespace MyCalculator
     /// </summary>
     internal class OperationDisplay : CalculatorDisplay
     {
-        public void UpdateDisplay(string text)
-        {
-            Text = text;
-        }
-
-        public void UpdateDisplay(bool holder)
-        {
-        }
     }
 }

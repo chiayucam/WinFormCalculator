@@ -11,6 +11,7 @@ namespace MyCalculator
     /// </summary>
     internal class BackSpaceButton : CalculatorButton
     {
+        private char SUBSTRACT_CHAR = '-';
         /// <summary>
         /// 覆寫按鈕被點擊後呼叫的方法
         /// </summary>
@@ -18,11 +19,14 @@ namespace MyCalculator
         /// <param name="operationDisplay">上排顯示</param>
         internal override void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay)
         {
-            // TODO: 點擊運算子後不做動作
-            string operandString = States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
-            operandString = operandString.Length == 1 ? "0" : operandString.Remove(operandString.Length - 1);
-            States.Operand = decimal.Parse(operandString);
-            currentDisplay.Text = GetTextForCurrentDisplay();
+            // TODO: 點擊運算子後不做動作，改成不用if
+            if (States.LastButtonType != typeof(ArithmeticButton))
+            {
+                string operandString = States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
+                operandString = operandString.Length == 1 ? "0" : operandString.Remove(operandString.Length - 1);
+                States.Operand = operandString.Length == 1 && operandString.First() == SUBSTRACT_CHAR ? 0m : decimal.Parse(operandString);
+                currentDisplay.Text = GetTextForCurrentDisplay();
+            }
         }
 
         /// <summary>
