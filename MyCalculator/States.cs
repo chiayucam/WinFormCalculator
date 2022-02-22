@@ -12,6 +12,20 @@ namespace MyCalculator
     public static class States
     {
         /// <summary>
+        /// 建構子
+        /// </summary>
+        static States()
+        {
+            Operator = NULL_CHAR;
+            Operand = 0m;
+            Result = 0m;
+            OperandQueue = new Queue<decimal>();
+            OperatorStack = new Stack<char>();
+            IsDecimalPointActive = false;
+            DecimalPointPositionCounter = 1;
+        }
+
+        /// <summary>
         /// 常數null字元
         /// </summary>
         public const char NULL_CHAR = '\0';
@@ -19,27 +33,27 @@ namespace MyCalculator
         /// <summary>
         /// 運算子，初始為null
         /// </summary>
-        public static char Operator { get; set; } = NULL_CHAR;
+        public static char Operator { get; set; }
 
         /// <summary>
         /// 運算元，初始為0.
         /// </summary>
-        public static decimal Operand { get; set; } = 0m;
+        public static decimal Operand { get; set; }
 
         /// <summary>
         /// 運算結果，初始為0.
         /// </summary>
-        public static decimal Result { get; set; } = 0m;
+        public static decimal Result { get; set; }
 
         /// <summary>
         /// 運算元佇列(儲存二元運算)
         /// </summary>
-        public static Queue<decimal> OperandQueue { get; set; } = new Queue<decimal>();
+        public static Queue<decimal> OperandQueue { get; set; }
 
         /// <summary>
         /// 運算子堆疊
         /// </summary>
-        public static Stack<char> OperatorStack { get; set; } = new Stack<char>();
+        public static Stack<char> OperatorStack { get; set; }
 
         /// <summary>
         /// 上次按鈕點擊事件的型別
@@ -49,12 +63,12 @@ namespace MyCalculator
         /// <summary>
         /// 是否有小數點
         /// </summary>
-        public static bool IsDecimalPointActive { get; set; } = false;
+        public static bool IsDecimalPointActive { get; set; }
 
         /// <summary>
         /// 小數後位數
         /// </summary>
-        public static int DecimalPointPositionCounter { get; set; } = 1;
+        public static int DecimalPointPositionCounter { get; set; }
         
         /// <summary>
         /// 重置運算子

@@ -33,7 +33,6 @@ namespace MyCalculator
             CalculatorButton button = (CalculatorButton)sender;
             button.Clicked(CurrentDisplay, OperationDisplay);
             States.LastButtonType = button.GetType();
-            Console.WriteLine($"{States.Operand} {States.Operator} {States.Result} {States.LastButtonType}");
         }
     }
 }

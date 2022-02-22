@@ -63,21 +63,12 @@ namespace MyCalculator
         }
 
         /// <summary>
-        /// 取得要在下排顯示的字串
+        /// 取得要在下排顯示的Result字串
         /// </summary>
         /// <returns>下排顯示的字串</returns>
         internal override string GetTextForCurrentDisplay()
         {
             return States.Result.ToString(DECIMAL_TO_STRING_FORMAT);
-        }
-
-        /// <summary>
-        /// 取得要在上排顯示的字串
-        /// </summary>
-        /// <returns>上排顯示的字串</returns>
-        internal override string GetTextForOperationDisplay()
-        {
-            return $"{States.Operand} {States.Operator} = {States.Result.ToString(DECIMAL_TO_STRING_FORMAT)} ";
         }
     }
 }

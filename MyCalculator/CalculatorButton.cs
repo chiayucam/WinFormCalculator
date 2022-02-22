@@ -15,7 +15,7 @@ namespace MyCalculator
         /// <summary>
         /// decimal到string轉換格式
         /// </summary>
-        protected const string DECIMAL_TO_STRING_FORMAT = "G12";
+        protected static readonly string DECIMAL_TO_STRING_FORMAT = "G9";
 
         /// <summary>
         /// 按鈕被點擊後呼叫的方法
@@ -25,21 +25,21 @@ namespace MyCalculator
         internal abstract void Clicked(CurrentDisplay currentDisplay, OperationDisplay operationDisplay);
 
         /// <summary>
-        /// 取得要在下排顯示的字串
+        /// 取得要在下排顯示的Operand字串
         /// </summary>
         /// <returns>下排顯示的字串</returns>
         internal virtual string GetTextForCurrentDisplay()
         {
-            return States.Result.ToString(DECIMAL_TO_STRING_FORMAT);
+            return States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
         }
 
         /// <summary>
-        /// 取得要在上排顯示的字串
+        /// 取得要在上排顯示的Operand字串與運算子
         /// </summary>
         /// <returns>上排顯示的字串</returns>
         internal virtual string GetTextForOperationDisplay()
         {
-            return $"{States.Result.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
+            return $"{States.Operand.ToString(DECIMAL_TO_STRING_FORMAT)} {States.Operator}";
         }
     }
 }

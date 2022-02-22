@@ -35,14 +35,5 @@ namespace MyCalculator
             }
             currentDisplay.Text = GetTextForCurrentDisplay();
         }
-
-        /// <summary>
-        /// 取得要在下排顯示的字串
-        /// </summary>
-        /// <returns>下排顯示的字串</returns>
-        internal override string GetTextForCurrentDisplay()
-        {
-            return States.Operand.ToString(DECIMAL_TO_STRING_FORMAT);
-        }
     }
 }
