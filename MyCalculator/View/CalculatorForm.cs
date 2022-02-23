@@ -8,19 +8,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyCalculator
+namespace MyCalculator.View
 {
     /// <summary>
     /// 計算機Form
     /// </summary>
-    public partial class CalculatorForm : Form
+    internal partial class CalculatorForm : Form
     {
+        internal Presenter.CalculatorPresenter Presenter { get; set; }
+
         /// <summary>
         /// 初始化元件
         /// </summary>
-        public CalculatorForm()
+        internal CalculatorForm()
         {
             InitializeComponent();
+        }
+
+        internal string LowerLabel
+        {
+            get { return this.CurrentDisplay.Text;  }
+            set { this.CurrentDisplay.Text = value; }
+        }
+
+        internal string UpperLabel
+        {
+            get { return this.OperationDisplay.Text; }
+            set { this.OperationDisplay.Text = value; }
         }
 
         /// <summary>
@@ -30,9 +44,9 @@ namespace MyCalculator
         /// <param name="e">事件參數</param>
         private void CalculatorButtonOnClick(object sender, EventArgs e)
         {
-            CalculatorButton button = (CalculatorButton)sender;
-            button.Clicked(CurrentDisplay, OperationDisplay);
-            States.LastButtonType = button.GetType();
+            dynamic button = sender;
+            Presenter.UpdateCalculatorView(button);
+            Console.WriteLine(decimal.Parse(string.Empty));
         }
     }
 }

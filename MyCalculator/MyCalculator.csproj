@@ -58,10 +58,13 @@
     <Compile Include="CalculatorDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CalculatorForm.cs">
+    <Compile Include="Model\CalculatorState.cs" />
+    <Compile Include="Model\ICalculatorState.cs" />
+    <Compile Include="Presenter\CalculatorPresenter.cs" />
+    <Compile Include="View\CalculatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CalculatorForm.Designer.cs">
+    <Compile Include="View\CalculatorForm.Designer.cs">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ClearAllButton.cs">
@@ -91,7 +94,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="States.cs" />
-    <EmbeddedResource Include="CalculatorForm.resx">
+    <EmbeddedResource Include="View\CalculatorForm.resx">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -116,5 +119,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

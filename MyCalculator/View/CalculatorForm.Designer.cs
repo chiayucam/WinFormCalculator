@@ -1,4 +1,4 @@
-﻿namespace MyCalculator
+﻿namespace MyCalculator.View
 {
     partial class CalculatorForm
     {

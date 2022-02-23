@@ -19,7 +19,12 @@ namespace MyCalculator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CalculatorForm());
+
+            var calculatorState = new Model.CalculatorState();
+            var calculatorView = new View.CalculatorForm();
+            var presenter = new Presenter.CalculatorPresenter(calculatorView, calculatorState);
+
+            Application.Run(calculatorView);
         }
     }
 }
