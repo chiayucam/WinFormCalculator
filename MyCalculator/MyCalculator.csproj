@@ -61,7 +61,6 @@
     <Compile Include="Model\CalculatorState.cs" />
     <Compile Include="Model\ICalculatorState.cs" />
     <Compile Include="Presenter\CalculatorPresenter.cs" />
-    <Compile Include="States.cs" />
     <Compile Include="View\CalculatorForm.cs">
       <SubType>Form</SubType>
     </Compile>
