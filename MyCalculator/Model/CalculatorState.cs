@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MyCalculator.Model
 {
+    /// <summary>
+    /// 計算機Model
+    /// </summary>
     internal class CalculatorState : ICalculatorState
     {
         /// <summary>
@@ -13,89 +16,120 @@ namespace MyCalculator.Model
         /// </summary>
         internal CalculatorState()
         {
-            Operator = NULL_CHAR;
-            OperandOne = 0m;
-            OperandTwo = 0m;
-            OperandString = string.Empty;
-            IsDecimalPointActive = false;
-            DecimalPointPositionCounter = 1;
+            Operand = string.Empty;
         }
 
         /// <summary>
-        /// 常數null字元
+        /// 常數decimal轉string格式字串
         /// </summary>
-        public static readonly char NULL_CHAR = '\0';
+        private static readonly string DECIMAL_TO_STRING_FORMAT = "G12";
 
         /// <summary>
-        /// 運算子，初始為null
+        /// 運算元state
         /// </summary>
-        public char Operator { get; set; }
-
-        /// <summary>
-        /// 運算元，初始為0.
-        /// </summary>
-        public decimal OperandOne { get; set; }
-
-        /// <summary>
-        /// 運算元，初始為0.
-        /// </summary>
-        public decimal OperandTwo { get; set; }
-
-        public string OperandString { get; set; }
-
-        /// <summary>
-        /// 是否有小數點
-        /// </summary>
-        public  bool IsDecimalPointActive { get; set; }
-
-        /// <summary>
-        /// 小數後位數
-        /// </summary>
-        public int DecimalPointPositionCounter { get; set; }
-
-        public string AppendDigitToOperand(string digit)
-        {
-            // 串接字串並更新運算元
-            OperandString += digit;
-
-            // 更新運算元
-            //OperandOne = decimal.Parse(OperandStringOne);
-            return OperandString;
-        }
-
-        /// <summary>
-        /// 重置運算子
-        /// </summary>
-        public void ResetOperator()
-        {
-            Operator = NULL_CHAR;
-        }
+        public string Operand { get; set; }
 
         /// <summary>
         /// 重置運算元
         /// </summary>
         public void ResetOperand()
         {
-            OperandOne = 0m;
-            OperandTwo = 0m;
-            OperandString = string.Empty;
-            IsDecimalPointActive = false;
-            DecimalPointPositionCounter = 1;
+            Operand = string.Empty;
         }
 
         /// <summary>
-        /// 全部狀態重置
+        /// 加法運算
         /// </summary>
-        public void ResetAll()
+        /// <param name="number">輸入運算元</param>
+        /// <returns>加法運算結果</returns>
+        public string Add(string number)
         {
-            ResetOperator();
-            ResetOperand();
+            // 例外處理: number為空字串
+            try
+            {
+                decimal newNumber = decimal.Parse(Operand) + decimal.Parse(number);
+                Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
+            }
+            catch (FormatException)
+            {
+                // 不做任何運算
+            }
+            return Operand;
         }
 
-        public string Add(string value)
+        /// <summary>
+        /// 減法運算
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>減法運算結果</returns>
+        public string Subtract(string number)
         {
+            // 例外處理: number為空字串
+            try
+            {
+                decimal newNumber = decimal.Parse(Operand) - decimal.Parse(number);
+                Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
+            }
+            catch (FormatException)
+            {
+                // 不做任何運算
+            }
+            return Operand;
+        }
 
-            return value;
+        /// <summary>
+        /// 乘法運算
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>乘法運算結果</returns>
+        public string Multiply(string number)
+        {
+            // 例外處理: number為空字串
+            try
+            {
+                decimal newNumber = decimal.Parse(Operand) * decimal.Parse(number);
+                Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
+            }
+            catch (FormatException)
+            {
+                // 不做任何運算
+            }
+            return Operand;
+        }
+
+        /// <summary>
+        /// 除法運算
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>除法運算結果</returns>
+        public string Divide(string number)
+        {
+            // 例外處理: number為空字串, 除數為零
+            try
+            {
+                decimal newNumber = decimal.Parse(Operand) / decimal.Parse(number);
+                Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
+            }
+            catch (FormatException)
+            {
+                // 不做任何運算
+            }
+            catch (DivideByZeroException)
+            {
+                return "無法除以零";
+            }
+            return Operand;
+        }
+
+        /// <summary>
+        /// 設定運算元
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns></returns>
+        public string SetOperand(string number)
+        {
+            Operand = number;
+            return Operand;
         }
     }
 }

@@ -69,7 +69,7 @@ namespace MyCalculator
         /// 小數後位數
         /// </summary>
         public static int DecimalPointPositionCounter { get; set; }
-        
+
         /// <summary>
         /// 重置運算子
         /// </summary>

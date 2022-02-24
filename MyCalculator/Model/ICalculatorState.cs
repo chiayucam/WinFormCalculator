@@ -8,14 +8,18 @@ namespace MyCalculator.Model
 {
     public interface ICalculatorState
     {
-        char Operator { get; set; }
-        decimal OperandOne { get; set; }
-        decimal OperandTwo { get; set; }
-
-        string AppendDigitToOperand(string digit);
+        string Operand { get; set; }
 
         string Add(string value);
 
-        void ResetAll();
+        string Subtract(string value);
+
+        string Multiply(string value);
+
+        string Divide(string value);
+
+        string SetOperand(string value);
+
+        void ResetOperand();
     }
 }

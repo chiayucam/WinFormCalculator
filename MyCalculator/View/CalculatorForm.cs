@@ -15,6 +15,9 @@ namespace MyCalculator.View
     /// </summary>
     internal partial class CalculatorForm : Form
     {
+        /// <summary>
+        /// 計算機Presenter reference
+        /// </summary>
         internal Presenter.CalculatorPresenter Presenter { get; set; }
 
         /// <summary>
@@ -25,12 +28,18 @@ namespace MyCalculator.View
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 下排顯示
+        /// </summary>
         internal string LowerLabel
         {
             get { return this.CurrentDisplay.Text;  }
             set { this.CurrentDisplay.Text = value; }
         }
 
+        /// <summary>
+        /// 上排顯示
+        /// </summary>
         internal string UpperLabel
         {
             get { return this.OperationDisplay.Text; }
@@ -46,7 +55,6 @@ namespace MyCalculator.View
         {
             dynamic button = sender;
             Presenter.UpdateCalculatorView(button);
-            Console.WriteLine(decimal.Parse(string.Empty));
         }
     }
 }
