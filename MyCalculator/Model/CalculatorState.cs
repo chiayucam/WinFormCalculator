@@ -30,14 +30,6 @@ namespace MyCalculator.Model
         public string Operand { get; set; }
 
         /// <summary>
-        /// 重置運算元
-        /// </summary>
-        public void ResetOperand()
-        {
-            Operand = string.Empty;
-        }
-
-        /// <summary>
         /// 加法運算
         /// </summary>
         /// <param name="number">輸入運算元</param>
@@ -125,11 +117,19 @@ namespace MyCalculator.Model
         /// 設定運算元
         /// </summary>
         /// <param name="number">輸入運算元</param>
-        /// <returns></returns>
+        /// <returns>運算元</returns>
         public string SetOperand(string number)
         {
             Operand = number;
             return Operand;
+        }
+
+        /// <summary>
+        /// 重置運算元
+        /// </summary>
+        public void ResetOperand()
+        {
+            Operand = string.Empty;
         }
     }
 }

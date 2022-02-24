@@ -6,20 +6,54 @@ using System.Threading.Tasks;
 
 namespace MyCalculator.Model
 {
+    /// <summary>
+    /// 計算機Model interface
+    /// </summary>
     public interface ICalculatorState
     {
+        /// <summary>
+        /// 運算元
+        /// </summary>
         string Operand { get; set; }
 
-        string Add(string value);
+        /// <summary>
+        /// 加法運算
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>加法運算結果</returns>
+        string Add(string number);
 
-        string Subtract(string value);
+        /// <summary>
+        /// 減法運算
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>減法運算結果</returns>
+        string Subtract(string number);
 
-        string Multiply(string value);
+        /// <summary>
+        /// 乘法運算
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>乘法運算結果</returns>
+        string Multiply(string number);
 
-        string Divide(string value);
+        /// <summary>
+        /// 除法運算
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>除法運算結果</returns>
+        string Divide(string number);
 
-        string SetOperand(string value);
+        /// <summary>
+        /// 設定運算元
+        /// </summary>
+        /// <param name="number">輸入運算元</param>
+        /// <returns>運算元</returns>
+        string SetOperand(string number);
 
+        /// <summary>
+        /// 重置運算元
+        /// </summary>
         void ResetOperand();
     }
 }
