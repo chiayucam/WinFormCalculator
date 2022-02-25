@@ -36,16 +36,9 @@ namespace MyCalculator.Model
         /// <returns>加法運算結果</returns>
         public string Add(string number)
         {
-            // 例外處理: number為空字串
-            try
-            {
-                decimal newNumber = decimal.Parse(Operand) + decimal.Parse(number);
-                Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
-            }
-            catch (FormatException)
-            {
-                // 不做任何運算
-            }
+            // 轉換成decimal做運算再轉回string
+            decimal newNumber = decimal.Parse(Operand) + decimal.Parse(number);
+            Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
             return Operand;
         }
 
@@ -56,16 +49,9 @@ namespace MyCalculator.Model
         /// <returns>減法運算結果</returns>
         public string Subtract(string number)
         {
-            // 例外處理: number為空字串
-            try
-            {
-                decimal newNumber = decimal.Parse(Operand) - decimal.Parse(number);
-                Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
-            }
-            catch (FormatException)
-            {
-                // 不做任何運算
-            }
+            // 轉換成decimal做運算再轉回string
+            decimal newNumber = decimal.Parse(Operand) - decimal.Parse(number);
+            Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
             return Operand;
         }
 
@@ -76,16 +62,9 @@ namespace MyCalculator.Model
         /// <returns>乘法運算結果</returns>
         public string Multiply(string number)
         {
-            // 例外處理: number為空字串
-            try
-            {
-                decimal newNumber = decimal.Parse(Operand) * decimal.Parse(number);
-                Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
-            }
-            catch (FormatException)
-            {
-                // 不做任何運算
-            }
+            // 轉換成decimal做運算再轉回string
+            decimal newNumber = decimal.Parse(Operand) * decimal.Parse(number);
+            Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
             return Operand;
         }
 
@@ -96,18 +75,15 @@ namespace MyCalculator.Model
         /// <returns>除法運算結果</returns>
         public string Divide(string number)
         {
-            // 例外處理: number為空字串, 除數為零
+            // 例外處理: 除數為零
             try
             {
                 decimal newNumber = decimal.Parse(Operand) / decimal.Parse(number);
                 Operand = newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
             }
-            catch (FormatException)
-            {
-                // 不做任何運算
-            }
             catch (DivideByZeroException)
             {
+                Operand = string.Empty;
                 return "無法除以零";
             }
             return Operand;

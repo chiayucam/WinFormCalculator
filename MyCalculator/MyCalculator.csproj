@@ -93,6 +93,7 @@
     <Compile Include="SignButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="View\ICalculatorView.cs" />
     <EmbeddedResource Include="View\CalculatorForm.resx">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -12,12 +12,12 @@ namespace MyCalculator.Presenter
     /// <summary>
     /// 計算機Presenter
     /// </summary>
-    internal class CalculatorPresenter
+    public class CalculatorPresenter
     {
         /// <summary>
         /// 計算機View
         /// </summary>
-        private CalculatorForm CalculatorView;
+        private ICalculatorView CalculatorView;
 
         /// <summary>
         /// 計算機Model
@@ -29,14 +29,15 @@ namespace MyCalculator.Presenter
         /// </summary>
         /// <param name="calculatorView">計算機View reference</param>
         /// <param name="calculatorState">計算機Model reference</param>
-        internal CalculatorPresenter(CalculatorForm calculatorView, ICalculatorState calculatorState)
+        internal CalculatorPresenter(ICalculatorView calculatorView, ICalculatorState calculatorState)
         {
             CalculatorState = calculatorState;
             CalculatorView = calculatorView;
             CalculatorView.Presenter = this;
 
+            //CurrentOperand = ZERO_STRING;
             CurrentOperand = string.Empty;
-            LastArithmeticOperator = '\0';
+            LastArithmeticOperator = 'C';
             InitiateOperations();
         }
 
@@ -67,11 +68,11 @@ namespace MyCalculator.Presenter
         {
             Operations = new Dictionary<char, Func<string, string>>
             {
-                { '+', (value) => CalculatorState.Add(value) },
-                { '-', (value) => CalculatorState.Subtract(value) },
-                { '×', (value) => CalculatorState.Multiply(value) },
-                { '÷', (value) => CalculatorState.Divide(value) },
-                { '\0', (value) => CalculatorState.SetOperand(value) }
+                { '+', (number) => CalculatorState.Add(number) },
+                { '-', (number) => CalculatorState.Subtract(number) },
+                { '×', (number) => CalculatorState.Multiply(number) },
+                { '÷', (number) => CalculatorState.Divide(number) },
+                { 'C', (number) => CalculatorState.SetOperand(number) }
             };
         }
 
@@ -81,8 +82,14 @@ namespace MyCalculator.Presenter
         /// <param name="button">NumberButton型態的數字按鈕</param>
         internal void UpdateCalculatorView(NumberButton button)
         {
-            // 將新數字串接再運算元字串後
+            // 去除字串前面0, 避免出現0000000
+            CurrentOperand = CurrentOperand.TrimStart('0');
+
+            // 將新數字串接在運算元字串後面
             CurrentOperand += button.Text;
+
+            // 避免出現小數點前零無法顯示 .1 
+            CurrentOperand = decimal.Parse(CurrentOperand).ToString("G");
 
             // 顯示新字串
             CalculatorView.LowerLabel = CurrentOperand;
@@ -94,13 +101,19 @@ namespace MyCalculator.Presenter
         /// <param name="button">ArithmeticButton型態的四則運算子按鈕</param>
         internal void UpdateCalculatorView(ArithmeticButton button)
         {
+            // 取得運算結果
             string result = Operations[LastArithmeticOperator](CurrentOperand);
 
+            // 重置當前運算元
+            //CurrentOperand = ZERO_STRING;
+            CurrentOperand = string.Empty;
+
+            // 紀錄此次運算字符
+            LastArithmeticOperator = char.Parse(button.Text);
+
+            // 上下排顯示
             CalculatorView.UpperLabel = $"{result} {button.Text}";
             CalculatorView.LowerLabel = result;
-
-            LastArithmeticOperator = char.Parse(button.Text);
-            CurrentOperand = string.Empty;
         }
 
         /// <summary>
@@ -109,9 +122,22 @@ namespace MyCalculator.Presenter
         /// <param name="button">EqualButton型態的等號按鈕</param>
         internal void UpdateCalculatorView(EqualButton button)
         {
+            // 取得上一個運算元
             string lastOperand = CalculatorState.Operand;
+            
+            try
+            {
+                decimal.Parse(CurrentOperand);
+            }
+            catch (FormatException)
+            {
+                CurrentOperand = lastOperand;
+            }
+
+            // 取得運算結果
             string result = Operations[LastArithmeticOperator](CurrentOperand);
 
+            // 顯示上下排
             CalculatorView.UpperLabel = $"{lastOperand} {LastArithmeticOperator} {CurrentOperand} {button.Text}";
             CalculatorView.LowerLabel = result;
         }
@@ -124,7 +150,8 @@ namespace MyCalculator.Presenter
         {
             CalculatorState.ResetOperand();
 
-            LastArithmeticOperator = '\0';
+            LastArithmeticOperator = char.Parse(button.Text);
+            //CurrentOperand = ZERO_STRING;
             CurrentOperand = string.Empty;
 
             CalculatorView.UpperLabel = string.Empty;
@@ -137,6 +164,7 @@ namespace MyCalculator.Presenter
         /// <param name="button">ClearEntryButton型態的清除輸入按鈕</param>
         internal void UpdateCalculatorView(ClearEntryButton button)
         {
+            //CurrentOperand = ZERO_STRING;
             CurrentOperand = string.Empty;
 
             CalculatorView.LowerLabel = ZERO_STRING;
@@ -150,13 +178,23 @@ namespace MyCalculator.Presenter
         {
             try
             {
-                CurrentOperand.Remove(CurrentOperand.Length - 2);
+                // 測試數字部分(不含負號)字串長度，如 <=1 直接清空字串
+                string negativeRemovedOperand = CurrentOperand.TrimStart('-');
+                negativeRemovedOperand.Remove(negativeRemovedOperand.Length - 2);
+
+                // 去除字串最後一個字元
                 CurrentOperand = CurrentOperand.Remove(CurrentOperand.Length - 1);
 
+                //顯示
                 CalculatorView.LowerLabel = CurrentOperand;
             }
             catch (ArgumentOutOfRangeException)
             {
+                // 清空運算元
+                //CurrentOperand = ZERO_STRING;
+                CurrentOperand = string.Empty;
+
+                //顯示
                 CalculatorView.LowerLabel = ZERO_STRING;
             }
         }

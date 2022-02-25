@@ -13,12 +13,30 @@ namespace MyCalculator.View
     /// <summary>
     /// 計算機Form
     /// </summary>
-    internal partial class CalculatorForm : Form
+    internal partial class CalculatorForm : Form, ICalculatorView
     {
         /// <summary>
         /// 計算機Presenter reference
         /// </summary>
-        internal Presenter.CalculatorPresenter Presenter { get; set; }
+        public Presenter.CalculatorPresenter Presenter { get; set; }
+
+        /// <summary>
+        /// 下排顯示
+        /// </summary>
+        public string LowerLabel
+        {
+            get { return this.CurrentDisplay.Text; }
+            set { this.CurrentDisplay.Text = value; }
+        }
+
+        /// <summary>
+        /// 上排顯示
+        /// </summary>
+        public string UpperLabel
+        {
+            get { return this.OperationDisplay.Text; }
+            set { this.OperationDisplay.Text = value; }
+        }
 
         /// <summary>
         /// 初始化元件
@@ -26,24 +44,6 @@ namespace MyCalculator.View
         internal CalculatorForm()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// 下排顯示
-        /// </summary>
-        internal string LowerLabel
-        {
-            get { return this.CurrentDisplay.Text;  }
-            set { this.CurrentDisplay.Text = value; }
-        }
-
-        /// <summary>
-        /// 上排顯示
-        /// </summary>
-        internal string UpperLabel
-        {
-            get { return this.OperationDisplay.Text; }
-            set { this.OperationDisplay.Text = value; }
         }
 
         /// <summary>
