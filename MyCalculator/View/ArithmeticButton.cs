@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyCalculator
+namespace MyCalculator.View
 {
     /// <summary>
-    /// 計算機下排顯示，繼承自CalculatorDisplay
+    /// 四則運算按鈕，繼承CalculatorButton
     /// </summary>
-    internal class CurrentDisplay : CalculatorDisplay
+    internal class ArithmeticButton : CalculatorButton
     {
     }
 }

@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyCalculator
+namespace MyCalculator.View
 {
     /// <summary>
-    /// 小數點按鈕，繼承CalculatorButton
+    /// 退格按鈕，繼承CalculatorButton
     /// </summary>
-    internal class DecimalPointButton : CalculatorButton
+    internal class BackSpaceButton : CalculatorButton
     {
     }
 }

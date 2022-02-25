@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyCalculator
+namespace MyCalculator.View
 {
     /// <summary>
-    /// 計算機顯示
+    /// 計算機按鈕抽象類別
     /// </summary>
-    internal class CalculatorDisplay : Label
+    internal abstract class CalculatorButton : Button
     {
     }
 }

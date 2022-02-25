@@ -1,16 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace MyCalculator
+namespace MyCalculator.View
 {
     /// <summary>
-    /// 計算機按鈕抽象類別
+    /// 等號按鈕，繼承CalculatorButton
     /// </summary>
-    internal abstract class CalculatorButton : Button
+    internal class EqualButton : CalculatorButton
     {
     }
 }

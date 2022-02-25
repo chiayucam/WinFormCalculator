@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Equal = new MyCalculator.EqualButton();
-            this.DecimalPoint = new MyCalculator.DecimalPointButton();
-            this.Sign = new MyCalculator.SignButton();
-            this.Multiply = new MyCalculator.ArithmeticButton();
-            this.Divide = new MyCalculator.ArithmeticButton();
-            this.Subtract = new MyCalculator.ArithmeticButton();
-            this.Backspace = new MyCalculator.BackSpaceButton();
-            this.ClearAll = new MyCalculator.ClearAllButton();
-            this.ClearEntry = new MyCalculator.ClearEntryButton();
-            this.Add = new MyCalculator.ArithmeticButton();
-            this.OperationDisplay = new MyCalculator.OperationDisplay();
-            this.CurrentDisplay = new MyCalculator.CurrentDisplay();
-            this.NumpadNine = new MyCalculator.NumberButton();
-            this.NumpadEight = new MyCalculator.NumberButton();
-            this.NumpadSeven = new MyCalculator.NumberButton();
-            this.NumpadSix = new MyCalculator.NumberButton();
-            this.NumpadFive = new MyCalculator.NumberButton();
-            this.NumpadFour = new MyCalculator.NumberButton();
-            this.NumpadThree = new MyCalculator.NumberButton();
-            this.NumpadTwo = new MyCalculator.NumberButton();
-            this.NumpadOne = new MyCalculator.NumberButton();
-            this.NumpadZero = new MyCalculator.NumberButton();
+            this.Equal = new MyCalculator.View.EqualButton();
+            this.DecimalPoint = new MyCalculator.View.DecimalPointButton();
+            this.Sign = new MyCalculator.View.SignButton();
+            this.Multiply = new MyCalculator.View.ArithmeticButton();
+            this.Divide = new MyCalculator.View.ArithmeticButton();
+            this.Subtract = new MyCalculator.View.ArithmeticButton();
+            this.Backspace = new MyCalculator.View.BackSpaceButton();
+            this.ClearAll = new MyCalculator.View.ClearAllButton();
+            this.ClearEntry = new MyCalculator.View.ClearEntryButton();
+            this.Add = new MyCalculator.View.ArithmeticButton();
+            this.OperationDisplay = new MyCalculator.View.OperationDisplay();
+            this.CurrentDisplay = new MyCalculator.View.CurrentDisplay();
+            this.NumpadNine = new MyCalculator.View.NumberButton();
+            this.NumpadEight = new MyCalculator.View.NumberButton();
+            this.NumpadSeven = new MyCalculator.View.NumberButton();
+            this.NumpadSix = new MyCalculator.View.NumberButton();
+            this.NumpadFive = new MyCalculator.View.NumberButton();
+            this.NumpadFour = new MyCalculator.View.NumberButton();
+            this.NumpadThree = new MyCalculator.View.NumberButton();
+            this.NumpadTwo = new MyCalculator.View.NumberButton();
+            this.NumpadOne = new MyCalculator.View.NumberButton();
+            this.NumpadZero = new MyCalculator.View.NumberButton();
             this.SuspendLayout();
             // 
             // Equal

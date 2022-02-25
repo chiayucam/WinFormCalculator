@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace MyCalculator
+namespace MyCalculator.View
 {
     /// <summary>
-    /// 計算機上排顯示，繼承自CalculatorDisplay
+    /// 計算機顯示
     /// </summary>
-    internal class OperationDisplay : CalculatorDisplay
+    internal class CalculatorDisplay : Label
     {
     }
 }

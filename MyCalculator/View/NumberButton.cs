@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MyCalculator
+namespace MyCalculator.View
 {
     /// <summary>
     /// 0-9數字按鈕，繼承CalculatorButton

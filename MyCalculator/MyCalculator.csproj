@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArithmeticButton.cs">
+    <Compile Include="View\ArithmeticButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="BackSpaceButton.cs">
+    <Compile Include="View\BackSpaceButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CalculatorButton.cs">
+    <Compile Include="View\CalculatorButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CalculatorDisplay.cs">
+    <Compile Include="View\CalculatorDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Model\CalculatorState.cs" />
@@ -67,30 +67,30 @@
     <Compile Include="View\CalculatorForm.Designer.cs">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClearAllButton.cs">
+    <Compile Include="View\ClearAllButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ClearEntryButton.cs">
+    <Compile Include="View\ClearEntryButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CurrentDisplay.cs">
+    <Compile Include="View\CurrentDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DecimalPointButton.cs">
+    <Compile Include="View\DecimalPointButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="EqualButton.cs">
+    <Compile Include="View\EqualButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="NumberButton.cs">
+    <Compile Include="View\NumberButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OperationDisplay.cs">
+    <Compile Include="View\OperationDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignButton.cs">
+    <Compile Include="View\SignButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\ICalculatorView.cs" />
