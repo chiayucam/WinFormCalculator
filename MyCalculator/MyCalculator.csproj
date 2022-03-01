@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AppendState.cs" />
+    <Compile Include="Model\ComputeState.cs" />
+    <Compile Include="Model\ICalculatorState.cs" />
+    <Compile Include="Model\StartState.cs" />
     <Compile Include="View\ArithmeticButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -58,8 +62,8 @@
     <Compile Include="View\CalculatorDisplay.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Model\CalculatorState.cs" />
-    <Compile Include="Model\ICalculatorState.cs" />
+    <Compile Include="Model\CalculatorModel.cs" />
+    <Compile Include="Model\ICalculatorModel.cs" />
     <Compile Include="Presenter\CalculatorPresenter.cs" />
     <Compile Include="View\CalculatorForm.cs">
       <SubType>Form</SubType>

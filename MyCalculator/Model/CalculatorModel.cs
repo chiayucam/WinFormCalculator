@@ -9,14 +9,15 @@ namespace MyCalculator.Model
     /// <summary>
     /// 計算機Model
     /// </summary>
-    internal class CalculatorState : ICalculatorState
+    public class CalculatorModel : ICalculatorModel
     {
         /// <summary>
         /// 建構子
         /// </summary>
-        internal CalculatorState()
+        public CalculatorModel()
         {
-            Operand = string.Empty;
+            State = new StartState(this);
+            Operand = "0";
         }
 
         /// <summary>
@@ -24,10 +25,28 @@ namespace MyCalculator.Model
         /// </summary>
         private static readonly string DECIMAL_TO_STRING_FORMAT = "G12";
 
+        public CalculatorState State { get; set; }
+
         /// <summary>
         /// 運算元state
         /// </summary>
         public string Operand { get; set; }
+
+        public string Result { get; set; }
+
+        private static readonly Dictionary<char, int> OperatorPrecedence = new Dictionary<char, int>
+        {
+            {'+', 1 },
+            {'-', 1 },
+            {'×', 2 },
+            {'÷', 2 }
+        };
+
+        public Stack<string> OperatorStack = new Stack<string>();
+
+        public Stack<string> OperandStack = new Stack<string>();
+
+        public Queue<string> OutputQueue = new Queue<string>();
 
         /// <summary>
         /// 加法運算
@@ -105,7 +124,7 @@ namespace MyCalculator.Model
         /// </summary>
         public void ResetOperand()
         {
-            Operand = string.Empty;
+            Operand = "0";
         }
     }
 }

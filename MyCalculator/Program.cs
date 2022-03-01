@@ -20,7 +20,7 @@ namespace MyCalculator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var calculatorState = new Model.CalculatorState();
+            var calculatorState = new Model.CalculatorModel();
             var calculatorView = new View.CalculatorForm();
             var presenter = new Presenter.CalculatorPresenter(calculatorView, calculatorState);
 
