@@ -41,7 +41,11 @@ namespace MyCalculator.Presenter
         /// </summary>
         private static readonly string ZERO_STRING = "0";
 
+        /// <summary>
+        /// 運算過程
+        /// </summary>
         private string OperationHistory { get; set; }
+        // TODO: Add OperationHistory for sqrt and others
 
         /// <summary>
         /// 更新view，數字按鈕

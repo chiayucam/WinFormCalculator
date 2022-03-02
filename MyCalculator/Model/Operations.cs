@@ -12,6 +12,11 @@ namespace MyCalculator.Model
     public static class Operations
     {
         /// <summary>
+        /// 轉換格式
+        /// </summary>
+        private static readonly string DECIMAL_TO_STRING_FORMAT = "G6";
+
+        /// <summary>
         /// 加法
         /// </summary>
         /// <param name="operandOne">左運算元</param>
@@ -21,7 +26,7 @@ namespace MyCalculator.Model
         {
             // 轉換成decimal做運算再轉回string
             decimal newNumber = decimal.Parse(operandOne) + decimal.Parse(operandTwo);
-            return newNumber.ToString();
+            return newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
         }
 
         /// <summary>
@@ -34,7 +39,7 @@ namespace MyCalculator.Model
         {
             // 轉換成decimal做運算再轉回string
             decimal newNumber = decimal.Parse(operandOne) - decimal.Parse(operandTwo);
-            return newNumber.ToString();
+            return newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
         }
 
         /// <summary>
@@ -47,7 +52,7 @@ namespace MyCalculator.Model
         {
             // 轉換成decimal做運算再轉回string
             decimal newNumber = decimal.Parse(operandOne) * decimal.Parse(operandTwo);
-            return newNumber.ToString();
+            return newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
         }
 
         /// <summary>
@@ -60,7 +65,7 @@ namespace MyCalculator.Model
         {
             // 轉換成decimal做運算再轉回string，DivideByZero例外處理放在外面做
             decimal newNumber = decimal.Parse(operandOne) / decimal.Parse(operandTwo);
-            return newNumber.ToString();
+            return newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
         }
     }
 }
