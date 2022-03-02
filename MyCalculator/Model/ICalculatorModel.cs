@@ -23,33 +23,7 @@ namespace MyCalculator.Model
 
         string Result { get; set; }
 
-        /// <summary>
-        /// 加法運算
-        /// </summary>
-        /// <param name="number">輸入運算元</param>
-        /// <returns>加法運算結果</returns>
-        string Add(string number);
-
-        /// <summary>
-        /// 減法運算
-        /// </summary>
-        /// <param name="number">輸入運算元</param>
-        /// <returns>減法運算結果</returns>
-        string Subtract(string number);
-
-        /// <summary>
-        /// 乘法運算
-        /// </summary>
-        /// <param name="number">輸入運算元</param>
-        /// <returns>乘法運算結果</returns>
-        string Multiply(string number);
-
-        /// <summary>
-        /// 除法運算
-        /// </summary>
-        /// <param name="number">輸入運算元</param>
-        /// <returns>除法運算結果</returns>
-        string Divide(string number);
+        string Operator { get; set; }
 
         /// <summary>
         /// 設定運算元
@@ -62,5 +36,7 @@ namespace MyCalculator.Model
         /// 重置運算元
         /// </summary>
         void ResetOperand();
+
+        void ResetAll();
     }
 }

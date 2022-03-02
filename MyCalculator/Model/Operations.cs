@@ -35,10 +35,5 @@ namespace MyCalculator.Model
             decimal newNumber = decimal.Parse(operandOne) / decimal.Parse(operandTwo);
             return newNumber.ToString();
         }
-
-        public static string SetOperand(string operandOne, string operandTwo)
-        {
-            return operandOne;
-        }
     }
 }

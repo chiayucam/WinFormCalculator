@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\AppendDecimalState.cs" />
     <Compile Include="Model\AppendState.cs" />
     <Compile Include="Model\ComputedState.cs" />
     <Compile Include="Model\CalculatorState.cs" />
@@ -100,6 +101,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\ICalculatorView.cs" />
+    <Compile Include="View\SquareRootButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="View\CalculatorForm.resx">
       <DependentUpon>CalculatorForm.cs</DependentUpon>
     </EmbeddedResource>

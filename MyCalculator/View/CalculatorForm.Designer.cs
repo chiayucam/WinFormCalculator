@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.squareRootButton1 = new MyCalculator.View.SquareRootButton();
             this.Equal = new MyCalculator.View.EqualButton();
             this.DecimalPoint = new MyCalculator.View.DecimalPointButton();
             this.Sign = new MyCalculator.View.SignButton();
@@ -51,6 +52,17 @@
             this.NumpadOne = new MyCalculator.View.NumberButton();
             this.NumpadZero = new MyCalculator.View.NumberButton();
             this.SuspendLayout();
+            // 
+            // squareRootButton1
+            // 
+            this.squareRootButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.squareRootButton1.Location = new System.Drawing.Point(4, 90);
+            this.squareRootButton1.Name = "squareRootButton1";
+            this.squareRootButton1.Size = new System.Drawing.Size(80, 60);
+            this.squareRootButton1.TabIndex = 17;
+            this.squareRootButton1.Text = "√";
+            this.squareRootButton1.UseVisualStyleBackColor = true;
+            this.squareRootButton1.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // Equal
             // 
@@ -177,9 +189,9 @@
             // CurrentDisplay
             // 
             this.CurrentDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrentDisplay.Location = new System.Drawing.Point(4, 74);
+            this.CurrentDisplay.Location = new System.Drawing.Point(90, 74);
             this.CurrentDisplay.Name = "CurrentDisplay";
-            this.CurrentDisplay.Size = new System.Drawing.Size(320, 76);
+            this.CurrentDisplay.Size = new System.Drawing.Size(234, 76);
             this.CurrentDisplay.TabIndex = 6;
             this.CurrentDisplay.Text = "0";
             this.CurrentDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -309,6 +321,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(328, 456);
+            this.Controls.Add(this.squareRootButton1);
             this.Controls.Add(this.Equal);
             this.Controls.Add(this.DecimalPoint);
             this.Controls.Add(this.Sign);
@@ -361,6 +374,7 @@
         private SignButton Sign;
         private DecimalPointButton DecimalPoint;
         private EqualButton Equal;
+        private SquareRootButton squareRootButton1;
     }
 }
 

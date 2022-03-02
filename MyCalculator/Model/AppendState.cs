@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace MyCalculator.Model
 {
-    class AppendState : CalculatorState
+    public class AppendState : CalculatorState
     {
         public override CalculatorModel Context { get; set; }
 
-        public AppendState(CalculatorModel calculatorModel)
+        public AppendState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
-            Context = calculatorModel;
+
         }
 
         public override void EnterNumber(string number)
@@ -22,11 +22,6 @@ namespace MyCalculator.Model
 
         public override void EnterArithmetic(string arithmetic)
         {
-            //Context.OperandStack.Push(Context.Operand);
-            //Context.OperatorStack.Push(arithmetic);
-            //Context.Result = Context.Operand;
-            //Context.Operand = string.Empty;
-
             Context.OperandStack.Push(Context.Operand);
             while (Context.OperatorStack.Count > 0 && ArithmeticPrecedence[arithmetic] <= ArithmeticPrecedence[Context.OperatorStack.Peek()])
             {
@@ -44,7 +39,6 @@ namespace MyCalculator.Model
                 }
             }
             Context.Result = Context.OperandStack.Peek();
-            Console.WriteLine(Context.Result);
 
             Context.OperatorStack.Push(arithmetic);
 
@@ -52,12 +46,37 @@ namespace MyCalculator.Model
             Context.State = new ComputedState(Context);
         }
 
-        public static Dictionary<string, Func<string, string, string>> OperationDict = new Dictionary<string, Func<string, string, string>>
+        public override void EnterEqual()
         {
-            {"+", Operations.Add },
-            {"-", Operations.Subtract },
-            {"×", Operations.Multiply },
-            {"÷", Operations.Divide }
-        };
+            Context.OperandStack.Push(Context.Operand);
+            while (Context.OperatorStack.Count > 0)
+            {
+                string operandTwo = Context.OperandStack.Pop();
+                string operandOne = Context.OperandStack.Pop();
+                string _operator = Context.OperatorStack.Pop();
+                try
+                {
+                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
+                }
+                catch (DivideByZeroException)
+                {
+                    Context.OperandStack.Push("無法除以零");
+                    Context.State = new ErrorState(Context);
+                }
+            }
+            Context.Result = Context.OperandStack.Peek();
+            Context.State = new ComputedState(Context);
+        }
+
+        public override void EnterClearEntry()
+        {
+            Context.ResetOperand();
+            Context.State = new StartState(Context);
+        }
+
+        public override void EnterSquareRoot()
+        {
+            Context.Operand = Math.Sqrt(double.Parse(Context.Operand)).ToString();
+        }
     }
 }

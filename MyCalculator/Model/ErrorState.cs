@@ -10,9 +10,9 @@ namespace MyCalculator.Model
     {
         public override CalculatorModel Context { get; set; }
 
-        public ErrorState(CalculatorModel calculatorModel)
+        public ErrorState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
-            Context = calculatorModel;
+
         }
 
         public override void EnterNumber(string number)
@@ -21,6 +21,25 @@ namespace MyCalculator.Model
         }
 
         public override void EnterArithmetic(string arithmetic)
+        {
+
+        }
+
+        public override void EnterEqual()
+        {
+
+        }
+
+        public override void EnterClearEntry()
+        {
+
+        }
+
+        public override void EnterDecimalPoint(string decimalPoint)
+        {
+
+        }
+        public override void EnterSquareRoot()
         {
 
         }
