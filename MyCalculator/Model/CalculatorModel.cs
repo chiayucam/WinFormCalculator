@@ -18,6 +18,7 @@ namespace MyCalculator.Model
         {
             State = new StartState(this);
             Operand = "0";
+            Operator = "C";
         }
 
         /// <summary>
@@ -32,21 +33,13 @@ namespace MyCalculator.Model
         /// </summary>
         public string Operand { get; set; }
 
-        public string Result { get; set; }
+        public string Operator { get; set; }
 
-        private static readonly Dictionary<char, int> OperatorPrecedence = new Dictionary<char, int>
-        {
-            {'+', 1 },
-            {'-', 1 },
-            {'×', 2 },
-            {'÷', 2 }
-        };
+        public string Result { get; set; }
 
         public Stack<string> OperatorStack = new Stack<string>();
 
         public Stack<string> OperandStack = new Stack<string>();
-
-        public Queue<string> OutputQueue = new Queue<string>();
 
         /// <summary>
         /// 加法運算
@@ -125,6 +118,19 @@ namespace MyCalculator.Model
         public void ResetOperand()
         {
             Operand = "0";
+        }
+
+        public void ResetOperator()
+        {
+            Operator = "C";
+        }
+
+        public void ResetAll()
+        {
+            ResetOperand();
+            ResetOperator();
+            OperandStack.Clear();
+            OperatorStack.Clear();
         }
     }
 }
