@@ -21,8 +21,14 @@ namespace MyCalculator.Model
         /// </summary>
         string Operand { get; set; }
 
+        /// <summary>
+        /// 運算結果
+        /// </summary>
         string Result { get; set; }
 
+        /// <summary>
+        /// 運算子
+        /// </summary>
         string Operator { get; set; }
 
         /// <summary>
@@ -37,6 +43,9 @@ namespace MyCalculator.Model
         /// </summary>
         void ResetOperand();
 
+        /// <summary>
+        /// 重置所有
+        /// </summary>
         void ResetAll();
     }
 }

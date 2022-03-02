@@ -20,8 +20,13 @@ namespace MyCalculator.Model
             Operand = "0";
             Operator = "C";
             Result = "0";
+            OperatorStack = new Stack<string>();
+            OperandStack = new Stack<string>();
         }
 
+        /// <summary>
+        /// 計算機狀態
+        /// </summary>
         public CalculatorState State { get; set; }
 
         /// <summary>
@@ -29,13 +34,25 @@ namespace MyCalculator.Model
         /// </summary>
         public string Operand { get; set; }
 
+        /// <summary>
+        /// 運算結果
+        /// </summary>
         public string Result { get; set; }
 
+        /// <summary>
+        /// 運算子
+        /// </summary>
         public string Operator { get; set; }
 
-        public Stack<string> OperatorStack = new Stack<string>();
+        /// <summary>
+        /// 運算子堆疊
+        /// </summary>
+        public Stack<string> OperatorStack { get; set; }
 
-        public Stack<string> OperandStack = new Stack<string>();
+        /// <summary>
+        /// 運算元堆疊
+        /// </summary>
+        public Stack<string> OperandStack { get; set; }
 
         /// <summary>
         /// 設定運算元
@@ -56,11 +73,17 @@ namespace MyCalculator.Model
             Operand = "0";
         }
 
+        /// <summary>
+        /// 重置運算子
+        /// </summary>
         public void ResetOperator()
         {
             Operator = "C";
         }
 
+        /// <summary>
+        /// 重置所有
+        /// </summary>
         public void ResetAll()
         {
             ResetOperand();

@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace MyCalculator.Model
 {
+    /// <summary>
+    /// 計算機抽象狀態
+    /// </summary>
     public abstract class CalculatorState
     {
-        public abstract CalculatorModel Context { get; set; }
+        /// <summary>
+        /// 計算機Model Reference
+        /// </summary>
+        public virtual CalculatorModel Context { get; set; }
 
+        /// <summary>
+        /// 建構子
+        /// </summary>
+        /// <param name="calculatorModel">計算機Model Reference</param>
         protected CalculatorState(CalculatorModel calculatorModel)
         {
             Context = calculatorModel;
         }
 
+        /// <summary>
+        /// 運算子優先序字典
+        /// </summary>
         public static readonly Dictionary<string, int> ArithmeticPrecedence = new Dictionary<string, int>
         {
             {"+", 1 },
@@ -23,6 +36,9 @@ namespace MyCalculator.Model
             {"÷", 2 }
         };
 
+        /// <summary>
+        /// 運算方法字典
+        /// </summary>
         public static readonly Dictionary<string, Func<string, string, string>> OperationDict = new Dictionary<string, Func<string, string, string>>
         {
             {"+", Operations.Add },
@@ -31,20 +47,44 @@ namespace MyCalculator.Model
             {"÷", Operations.Divide }
         };
 
+        /// <summary>
+        /// 數字按鈕方法
+        /// </summary>
+        /// <param name="number">數字</param>
         public abstract void EnterNumber(string number);
 
+        /// <summary>
+        /// 四則運算按鈕方法
+        /// </summary>
+        /// <param name="arithmetic">四則運算子</param>
         public abstract void EnterArithmetic(string arithmetic);
 
+        /// <summary>
+        /// 等號按鈕方法
+        /// </summary>
         public abstract void EnterEqual();
 
+        /// <summary>
+        /// 清除所有按鈕方法
+        /// </summary>
         public virtual void EnterClearAll()
         {
             Context.ResetAll();
             Context.State = new StartState(Context);
         }
 
-        public abstract void EnterClearEntry();
+        /// <summary>
+        /// 清除當前運算元方法
+        /// </summary>
+        public virtual void EnterClearEntry()
+        {
+            Context.ResetOperand();
+            Context.State = new StartState(Context);
+        }
 
+        /// <summary>
+        /// 退格按鈕方法
+        /// </summary>
         public virtual void EnterBackSpace()
         {
             try
@@ -64,17 +104,27 @@ namespace MyCalculator.Model
             }
         }
 
+        /// <summary>
+        /// 正負號按鈕方法
+        /// </summary>
         public virtual void EnterSign()
         {
             Context.Operand = (-decimal.Parse(Context.Operand)).ToString();
         }
 
+        /// <summary>
+        /// 小數點按鈕方法
+        /// </summary>
+        /// <param name="decimalPoint">小數點</param>
         public virtual void EnterDecimalPoint(string decimalPoint)
         {
             Context.Operand += decimalPoint;
             Context.State = new AppendDecimalState(Context);
         }
 
+        /// <summary>
+        /// 根號按鈕方法
+        /// </summary>
         public abstract void EnterSquareRoot();
     }
 }

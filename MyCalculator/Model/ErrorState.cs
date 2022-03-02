@@ -6,42 +6,62 @@ using System.Threading.Tasks;
 
 namespace MyCalculator.Model
 {
-    class ErrorState : CalculatorState
+    /// <summary>
+    /// 錯誤狀態，繼承CalculatorState
+    /// </summary>
+    public class ErrorState : CalculatorState
     {
-        public override CalculatorModel Context { get; set; }
-
+        /// <summary>
+        /// 建構子
+        /// </summary>
+        /// <param name="calculatorModel">計算機</param>
         public ErrorState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
-
         }
 
+        /// <summary>
+        /// 輸入數字不做任何事
+        /// </summary>
+        /// <param name="number">數字</param>
         public override void EnterNumber(string number)
         {
-
         }
 
+        /// <summary>
+        /// 輸入運算子不做任何事
+        /// </summary>
+        /// <param name="arithmetic">運算子</param>
         public override void EnterArithmetic(string arithmetic)
         {
-
         }
 
+        /// <summary>
+        /// 輸入等號不做任何事
+        /// </summary>
         public override void EnterEqual()
         {
-
         }
 
+        /// <summary>
+        /// 輸入清除當前運算子不做任何事
+        /// </summary>
         public override void EnterClearEntry()
         {
-
         }
 
+        /// <summary>
+        /// 輸入小數點不做任何事
+        /// </summary>
+        /// <param name="decimalPoint">小數點</param>
         public override void EnterDecimalPoint(string decimalPoint)
         {
-
         }
+
+        /// <summary>
+        /// 輸入根號不做任何事
+        /// </summary>
         public override void EnterSquareRoot()
         {
-
         }
     }
 }

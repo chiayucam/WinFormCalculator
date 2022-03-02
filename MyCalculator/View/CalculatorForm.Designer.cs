@@ -56,7 +56,7 @@
             // squareRootButton1
             // 
             this.squareRootButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.squareRootButton1.Location = new System.Drawing.Point(4, 90);
+            this.squareRootButton1.Location = new System.Drawing.Point(4, 93);
             this.squareRootButton1.Name = "squareRootButton1";
             this.squareRootButton1.Size = new System.Drawing.Size(80, 60);
             this.squareRootButton1.TabIndex = 17;
@@ -345,6 +345,7 @@
             this.Controls.Add(this.NumpadOne);
             this.Controls.Add(this.NumpadZero);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "CalculatorForm";
             this.Text = "小算盤";
             this.ResumeLayout(false);
