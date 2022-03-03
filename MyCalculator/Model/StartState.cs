@@ -38,7 +38,13 @@ namespace MyCalculator.Model
         /// <param name="arithmetic">運算元</param>
         public override void EnterArithmetic(string arithmetic)
         {
-            // TODO: better way to do
+            // 加到運算紀錄裡
+            Context.OperationHistory.Add(Context.Operand);
+            Context.OperationHistory.Add(arithmetic);
+
+            Context.OperandStack.Push(Context.Operand);
+
+            // 轉換狀態
             Context.State = new ComputedState(Context);
         }
 

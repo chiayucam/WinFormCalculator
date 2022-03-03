@@ -45,6 +45,9 @@ namespace MyCalculator.Model
             // 替換掉運算子
             Context.OperatorStack.Pop();
             Context.OperatorStack.Push(arithmetic);
+
+            // 更改運算紀錄
+            Context.OperationHistory[Context.OperationHistory.Count - 1] = arithmetic;
         }
 
         /// <summary>
@@ -96,6 +99,7 @@ namespace MyCalculator.Model
         public override void EnterSquareRoot()
         {
             Context.Operand = Math.Sqrt(double.Parse(Context.Result)).ToString();
+            Context.State = new StartState(Context);
         }
     }
 }

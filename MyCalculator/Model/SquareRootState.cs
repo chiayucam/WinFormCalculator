@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace MyCalculator.Model
 {
-    /// <summary>
-    /// 數字附加狀態，繼承CalculatorState
-    /// </summary>
-    public class AppendState : CalculatorState
+    class SquareRootState : CalculatorState
     {
         /// <summary>
         /// 建構子
         /// </summary>
         /// <param name="calculatorModel">計算機</param>
-        public AppendState(CalculatorModel calculatorModel) : base(calculatorModel)
+        public SquareRootState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
         }
 
@@ -25,7 +22,15 @@ namespace MyCalculator.Model
         /// <param name="number">數字</param>
         public override void EnterNumber(string number)
         {
-            Context.Operand += number;
+            Context.Operand = number;
+            if (number == "0")
+            {
+                Context.State = new StartState(Context);
+            }
+            else
+            {
+                Context.State = new AppendState(Context);
+            }
         }
 
         /// <summary>
@@ -35,7 +40,6 @@ namespace MyCalculator.Model
         public override void EnterArithmetic(string arithmetic)
         {
             // 加到運算紀錄裡
-            Context.OperationHistory.Add(Context.Operand);
             Context.OperationHistory.Add(arithmetic);
 
             Context.OperandStack.Push(Context.Operand);

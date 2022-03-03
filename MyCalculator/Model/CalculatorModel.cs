@@ -22,6 +22,7 @@ namespace MyCalculator.Model
             Result = "0";
             OperatorStack = new Stack<string>();
             OperandStack = new Stack<string>();
+            OperationHistory = new List<string>();
         }
 
         /// <summary>
@@ -53,6 +54,8 @@ namespace MyCalculator.Model
         /// 運算元堆疊
         /// </summary>
         public Stack<string> OperandStack { get; set; }
+
+        public List<string> OperationHistory { get; set; }
 
         /// <summary>
         /// 設定運算元
@@ -91,6 +94,7 @@ namespace MyCalculator.Model
             Result = "0";
             OperandStack.Clear();
             OperatorStack.Clear();
+            OperationHistory.Clear();
         }
     }
 }

@@ -42,12 +42,6 @@ namespace MyCalculator.Presenter
         private static readonly string ZERO_STRING = "0";
 
         /// <summary>
-        /// 運算過程
-        /// </summary>
-        private string OperationHistory { get; set; }
-        // TODO: Add OperationHistory for sqrt and others
-
-        /// <summary>
         /// 更新view，數字按鈕
         /// </summary>
         /// <param name="button">NumberButton型態的數字按鈕</param>
@@ -66,14 +60,10 @@ namespace MyCalculator.Presenter
         /// <param name="button">ArithmeticButton型態的四則運算子按鈕</param>
         internal void UpdateCalculatorView(ArithmeticButton button)
         {
-            OperationHistory += $"{CalculatorModel.Operand} {button.Text} ";
-            CalculatorView.UpperLabel = OperationHistory;
-
             CalculatorModel.State.EnterArithmetic(button.Text);
 
-            string result = CalculatorModel.Result;
-            
-            CalculatorView.LowerLabel = result;
+            CalculatorView.LowerLabel = CalculatorModel.Result;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 
         /// <summary>
@@ -84,11 +74,8 @@ namespace MyCalculator.Presenter
         {
             CalculatorModel.State.EnterEqual();
 
-            string result = CalculatorModel.Result;
-
-            CalculatorView.UpperLabel += $"{CalculatorModel.Operand} {button.Text}";
-
-            CalculatorView.LowerLabel = result;
+            CalculatorView.LowerLabel = CalculatorModel.Result;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 
         /// <summary>
@@ -100,7 +87,6 @@ namespace MyCalculator.Presenter
             CalculatorModel.State.EnterClearAll();
             CalculatorView.UpperLabel = string.Empty;
             CalculatorView.LowerLabel = ZERO_STRING;
-            OperationHistory = string.Empty;
         }
 
         /// <summary>
@@ -121,7 +107,7 @@ namespace MyCalculator.Presenter
         internal void UpdateCalculatorView(BackSpaceButton button)
         {
             CalculatorModel.State.EnterBackSpace();
-            CalculatorView.LowerLabel = CalculatorModel.Result;
+            CalculatorView.LowerLabel = CalculatorModel.Operand;
         }
 
         /// <summary>
@@ -150,11 +136,10 @@ namespace MyCalculator.Presenter
         /// <param name="button">SquareRootButton型態的根號按鈕</param>
         internal void UpdateCalculatorView(SquareRootButton button)
         {
-            CalculatorView.UpperLabel += $"√({CalculatorModel.Result})";
-
             CalculatorModel.State.EnterSquareRoot();
-            
+
             CalculatorView.LowerLabel = CalculatorModel.Operand;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
     }
 }

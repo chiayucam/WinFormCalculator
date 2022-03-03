@@ -52,6 +52,7 @@
     <Compile Include="Model\CalculatorState.cs" />
     <Compile Include="Model\ErrorState.cs" />
     <Compile Include="Model\Operations.cs" />
+    <Compile Include="Model\SquareRootState.cs" />
     <Compile Include="Model\StartState.cs" />
     <Compile Include="View\ArithmeticButton.cs">
       <SubType>Component</SubType>
