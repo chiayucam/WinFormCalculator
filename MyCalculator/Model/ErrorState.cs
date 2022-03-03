@@ -25,6 +25,8 @@ namespace MyCalculator.Model
         /// <param name="number">數字</param>
         public override void EnterNumber(string number)
         {
+            Context.ResetAll();
+            base.EnterNumber(number);
         }
 
         /// <summary>
@@ -40,6 +42,8 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterEqual()
         {
+            Context.ResetAll();
+            Context.State = new StartState(Context);
         }
 
         /// <summary>

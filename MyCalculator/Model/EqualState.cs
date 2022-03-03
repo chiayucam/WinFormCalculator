@@ -19,6 +19,12 @@ namespace MyCalculator.Model
         {
         }
 
+        public override void EnterNumber(string number)
+        {
+            Context.ResetAll();
+            base.EnterNumber(number);
+        }
+
         /// <summary>
         /// 根據運算子進行運算
         /// </summary>
@@ -36,8 +42,13 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterEqual()
         {
-            // 更改運算紀錄
-            Context.OperationHistory[0] = Context.Result;
+            // TODO: 0= = = = = problem
+            // 更改運算紀錄，清除前面紀錄只顯示兩個運算元及一個運算子
+            Context.OperationHistory.Clear();
+            Context.OperationHistory.Add(Context.Result);
+            Context.OperationHistory.Add(Context.Operator);
+            Context.OperationHistory.Add(Context.Operand);
+            Context.OperationHistory.Add("=");
 
             Context.OperandStack.Push(Context.Operand);
             while (Context.OperatorStack.Count > 0)
@@ -45,18 +56,37 @@ namespace MyCalculator.Model
                 string operandTwo = Context.OperandStack.Pop();
                 string operandOne = Context.OperandStack.Pop();
                 string _operator = Context.OperatorStack.Pop();
-                try
-                {
-                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-                }
-                catch (DivideByZeroException)
-                {
-                    Context.OperandStack.Push("無法除以零");
-                    Context.State = new ErrorState(Context);
-                }
+                Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
             }
+
             Context.Result = Context.OperandStack.Peek();
             Context.OperatorStack.Push(Context.Operator);
+
+            // 改變狀態
+            // TODO: make states singleton and change to tenary operator
+            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            {
+                Context.State = new ErrorState(Context);
+            }
+        }
+
+        /// <summary>
+        /// 退格按鈕方法
+        /// </summary>
+        public override void EnterBackSpace()
+        {
+            Context.OperationHistory.Clear();
+            Context.Operand = Context.Result;
+        }
+
+        /// <summary>
+        /// 小數點按鈕方法
+        /// </summary>
+        /// <param name="decimalPoint">小數點</param>
+        public override void EnterDecimalPoint(string decimalPoint)
+        {
+            Context.ResetAll();
+            base.EnterDecimalPoint(decimalPoint);
         }
 
         /// <summary>

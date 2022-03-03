@@ -51,37 +51,6 @@ namespace MyCalculator.Model
         }
 
         /// <summary>
-        /// 根據運算子堆疊進行運算，直到運算子堆疊清空
-        /// </summary>
-        public override void EnterEqual()
-        {
-            // 加到運算紀錄裡
-            Context.OperationHistory.Add(Context.Operand);
-            Context.OperationHistory.Add("=");
-
-            Context.OperandStack.Push(Context.Operand);
-            while (Context.OperatorStack.Count > 0)
-            {
-                string operandTwo = Context.OperandStack.Pop();
-                string operandOne = Context.OperandStack.Pop();
-                string _operator = Context.OperatorStack.Pop();
-                try
-                {
-                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-                }
-                catch (DivideByZeroException)
-                {
-                    Context.OperandStack.Push("無法除以零");
-                    Context.State = new ErrorState(Context);
-                }
-            }
-            Context.Result = Context.OperandStack.Peek();
-            Context.OperatorStack.Push(Context.Operator);
-
-            Context.State = new EqualState(Context);
-        }
-
-        /// <summary>
         /// 覆寫退格按鈕方法
         /// </summary>
         public override void EnterBackSpace()

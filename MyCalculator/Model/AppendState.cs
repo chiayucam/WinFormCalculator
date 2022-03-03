@@ -27,14 +27,5 @@ namespace MyCalculator.Model
         {
             Context.Operand += number;
         }
-
-        /// <summary>
-        /// 根據運算子堆疊進行運算，直到運算子堆疊清空，並轉換到ComputedState
-        /// </summary>
-        public override void EnterEqual()
-        {
-            base.EnterEqual();
-            Context.State = new EqualState(Context);
-        }
     }
 }

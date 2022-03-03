@@ -14,7 +14,9 @@ namespace MyCalculator.Model
         /// <summary>
         /// 轉換格式
         /// </summary>
-        private static readonly string DECIMAL_TO_STRING_FORMAT = "G6";
+        private static readonly string DECIMAL_TO_STRING_FORMAT = "G9";
+
+        public static readonly string DIVIDE_BY_ZERO_ERROR_MESSAGE = "無法除以零";
 
         /// <summary>
         /// 加法
@@ -63,9 +65,16 @@ namespace MyCalculator.Model
         /// <returns>運算結果</returns>
         public static string Divide(string operandOne, string operandTwo)
         {
-            // 轉換成decimal做運算再轉回string，DivideByZero例外處理放在外面做
-            decimal newNumber = decimal.Parse(operandOne) / decimal.Parse(operandTwo);
-            return newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
+            // 轉換成decimal做運算再轉回string，DivideByZero例外處理
+            try
+            {
+                decimal newNumber = decimal.Parse(operandOne) / decimal.Parse(operandTwo);
+                return newNumber.ToString(DECIMAL_TO_STRING_FORMAT);
+            }
+            catch (DivideByZeroException)
+            {
+                return DIVIDE_BY_ZERO_ERROR_MESSAGE;
+            }
         }
     }
 }

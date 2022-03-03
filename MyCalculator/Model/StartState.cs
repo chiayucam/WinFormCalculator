@@ -15,25 +15,8 @@ namespace MyCalculator.Model
         /// 建構子
         /// </summary>
         /// <param name="calculatorModel">計算機</param>
-        internal StartState(CalculatorModel calculatorModel) : base(calculatorModel)
+        public StartState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
-        }
-
-        /// <summary>
-        /// 轉換至ComputedState
-        /// </summary>
-        /// <param name="arithmetic">運算元</param>
-        public override void EnterArithmetic(string arithmetic)
-        {
-            // 加到運算紀錄裡
-            Context.OperationHistory.Add(Context.Operand);
-            Context.OperationHistory.Add(arithmetic);
-
-            Context.OperandStack.Push(Context.Operand);
-            Context.Operator = arithmetic;
-
-            // 轉換狀態
-            Context.State = new ComputedState(Context);
         }
 
         /// <summary>
@@ -42,24 +25,25 @@ namespace MyCalculator.Model
         public override void EnterEqual()
         {
             // TODO: Currently same as AppendState EnterEqual()
-            Context.OperandStack.Push(Context.Operand);
-            while (Context.OperatorStack.Count > 0)
-            {
-                string operandTwo = Context.OperandStack.Pop();
-                string operandOne = Context.OperandStack.Pop();
-                string _operator = Context.OperatorStack.Pop();
-                try
-                {
-                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-                }
-                catch (DivideByZeroException)
-                {
-                    Context.OperandStack.Push("無法除以零");
-                    Context.State = new ErrorState(Context);
-                }
-            }
-            Context.Result = Context.OperandStack.Peek();
-            Context.State = new ComputedState(Context);
+            //Context.OperandStack.Push(Context.Operand);
+            //while (Context.OperatorStack.Count > 0)
+            //{
+            //    string operandTwo = Context.OperandStack.Pop();
+            //    string operandOne = Context.OperandStack.Pop();
+            //    string _operator = Context.OperatorStack.Pop();
+            //    try
+            //    {
+            //        Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
+            //    }
+            //    catch (DivideByZeroException)
+            //    {
+            //        Context.OperandStack.Push("無法除以零");
+            //        Context.State = new ErrorState(Context);
+            //    }
+            //}
+            //Context.Result = Context.OperandStack.Peek();
+            //Context.State = new EqualState(Context);
+            base.EnterEqual();
         }
 
         /// <summary>

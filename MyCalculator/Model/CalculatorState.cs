@@ -54,6 +54,8 @@ namespace MyCalculator.Model
         public virtual void EnterNumber(string number)
         {
             Context.Operand = number;
+
+            // 改變狀態
             if (number == "0")
             {
                 Context.State = new StartState(Context);
@@ -74,26 +76,31 @@ namespace MyCalculator.Model
             Context.OperationHistory.Add(Context.Operand);
             Context.OperationHistory.Add(arithmetic);
 
+            // 運算
             Context.OperandStack.Push(Context.Operand);
             while (Context.OperatorStack.Count > 0 && ArithmeticPrecedence[arithmetic] <= ArithmeticPrecedence[Context.OperatorStack.Peek()])
             {
                 string operandTwo = Context.OperandStack.Pop();
                 string operandOne = Context.OperandStack.Pop();
                 string _operator = Context.OperatorStack.Pop();
-                try
-                {
-                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-                }
-                catch (DivideByZeroException)
-                {
-                    Context.OperandStack.Push("無法除以零");
-                    Context.State = new ErrorState(Context);
-                }
+                Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
             }
+
             Context.Result = Context.OperandStack.Peek();
+            // TODO: change push operatorstack action to another place and make it push Context.Operator
             Context.OperatorStack.Push(arithmetic);
             Context.Operator = arithmetic;
-            Context.State = new ComputedState(Context);
+
+            // 改變狀態
+            // TODO: make states singleton and change to tenary operator
+            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            {
+                Context.State = new ErrorState(Context);
+            }
+            else
+            {
+                Context.State = new ComputedState(Context);
+            }
         }
 
         /// <summary>
@@ -111,17 +118,22 @@ namespace MyCalculator.Model
                 string operandTwo = Context.OperandStack.Pop();
                 string operandOne = Context.OperandStack.Pop();
                 string _operator = Context.OperatorStack.Pop();
-                try
-                {
-                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-                }
-                catch (DivideByZeroException)
-                {
-                    Context.OperandStack.Push("無法除以零");
-                    Context.State = new ErrorState(Context);
-                }
+                Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
             }
+
             Context.Result = Context.OperandStack.Peek();
+            Context.OperatorStack.Push(Context.Operator);
+
+            // 改變狀態
+            // TODO: make states singleton and change to tenary operator
+            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            {
+                Context.State = new ErrorState(Context);
+            }
+            else
+            {
+                Context.State = new EqualState(Context);
+            }
         }
 
         /// <summary>

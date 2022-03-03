@@ -29,17 +29,12 @@ namespace MyCalculator.Presenter
         /// </summary>
         /// <param name="calculatorView">計算機View reference</param>
         /// <param name="calculatorModel">計算機Model reference</param>
-        internal CalculatorPresenter(ICalculatorView calculatorView, ICalculatorModel calculatorModel)
+        public CalculatorPresenter(ICalculatorView calculatorView, ICalculatorModel calculatorModel)
         {
             CalculatorModel = calculatorModel;
             CalculatorView = calculatorView;
             CalculatorView.Presenter = this;
         }
-
-        /// <summary>
-        /// 數字零常數字串
-        /// </summary>
-        private static readonly string ZERO_STRING = "0";
 
         /// <summary>
         /// 更新view，數字按鈕
@@ -52,6 +47,7 @@ namespace MyCalculator.Presenter
 
             // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Operand;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 
         /// <summary>
@@ -60,8 +56,10 @@ namespace MyCalculator.Presenter
         /// <param name="button">ArithmeticButton型態的四則運算子按鈕</param>
         internal void UpdateCalculatorView(ArithmeticButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterArithmetic(button.Text);
 
+            // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Result;
             CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
@@ -72,8 +70,10 @@ namespace MyCalculator.Presenter
         /// <param name="button">EqualButton型態的等號按鈕</param>
         internal void UpdateCalculatorView(EqualButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterEqual();
 
+            // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Result;
             CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
@@ -84,9 +84,12 @@ namespace MyCalculator.Presenter
         /// <param name="button">ClearAllButton型態的清除全部按鈕</param>
         internal void UpdateCalculatorView(ClearAllButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterClearAll();
-            CalculatorView.UpperLabel = string.Empty;
-            CalculatorView.LowerLabel = ZERO_STRING;
+
+            // 顯示
+            CalculatorView.LowerLabel = CalculatorModel.Operand;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 
         /// <summary>
@@ -95,9 +98,11 @@ namespace MyCalculator.Presenter
         /// <param name="button">ClearEntryButton型態的清除輸入按鈕</param>
         internal void UpdateCalculatorView(ClearEntryButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterClearEntry();
 
-            CalculatorView.LowerLabel = ZERO_STRING;
+            // 顯示
+            CalculatorView.LowerLabel = CalculatorModel.Operand;
         }
 
         /// <summary>
@@ -106,8 +111,12 @@ namespace MyCalculator.Presenter
         /// <param name="button">BackSpaceButton型態的退格按鈕</param>
         internal void UpdateCalculatorView(BackSpaceButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterBackSpace();
+
+            // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Operand;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 
         /// <summary>
@@ -116,7 +125,10 @@ namespace MyCalculator.Presenter
         /// <param name="button">SignButton型態的正負號按鈕</param>
         internal void UpdateCalculatorView(SignButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterSign();
+
+            // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Operand;
         }
 
@@ -126,8 +138,12 @@ namespace MyCalculator.Presenter
         /// <param name="button">DecimalPointButton型態的小數點按鈕</param>
         internal void UpdateCalculatorView(DecimalPointButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterDecimalPoint(button.Text);
+
+            // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Operand;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 
         /// <summary>
@@ -136,8 +152,10 @@ namespace MyCalculator.Presenter
         /// <param name="button">SquareRootButton型態的根號按鈕</param>
         internal void UpdateCalculatorView(SquareRootButton button)
         {
+            // 呼叫State方法
             CalculatorModel.State.EnterSquareRoot();
 
+            // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Operand;
             CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
