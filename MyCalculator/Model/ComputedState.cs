@@ -55,7 +55,11 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterEqual()
         {
-            Context.OperandStack.Push(Context.Result);
+            // 加到運算紀錄裡
+            Context.OperationHistory.Add(Context.Operand);
+            Context.OperationHistory.Add("=");
+
+            Context.OperandStack.Push(Context.Operand);
             while (Context.OperatorStack.Count > 0)
             {
                 string operandTwo = Context.OperandStack.Pop();
@@ -73,6 +77,8 @@ namespace MyCalculator.Model
             }
             Context.Result = Context.OperandStack.Peek();
             Context.OperatorStack.Push(Context.Operator);
+
+            Context.State = new EqualState(Context);
         }
 
         /// <summary>

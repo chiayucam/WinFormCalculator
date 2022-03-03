@@ -55,6 +55,9 @@ namespace MyCalculator.Model
         /// </summary>
         public Stack<string> OperandStack { get; set; }
 
+        /// <summary>
+        /// 運算過程紀錄
+        /// </summary>
         public List<string> OperationHistory { get; set; }
 
         /// <summary>

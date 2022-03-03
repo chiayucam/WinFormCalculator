@@ -51,18 +51,78 @@ namespace MyCalculator.Model
         /// 數字按鈕方法
         /// </summary>
         /// <param name="number">數字</param>
-        public abstract void EnterNumber(string number);
+        public virtual void EnterNumber(string number)
+        {
+            Context.Operand = number;
+            if (number == "0")
+            {
+                Context.State = new StartState(Context);
+            }
+            else
+            {
+                Context.State = new AppendState(Context);
+            }
+        }
 
         /// <summary>
         /// 四則運算按鈕方法
         /// </summary>
         /// <param name="arithmetic">四則運算子</param>
-        public abstract void EnterArithmetic(string arithmetic);
+        public virtual void EnterArithmetic(string arithmetic)
+        {
+            // 加到運算紀錄裡
+            Context.OperationHistory.Add(Context.Operand);
+            Context.OperationHistory.Add(arithmetic);
+
+            Context.OperandStack.Push(Context.Operand);
+            while (Context.OperatorStack.Count > 0 && ArithmeticPrecedence[arithmetic] <= ArithmeticPrecedence[Context.OperatorStack.Peek()])
+            {
+                string operandTwo = Context.OperandStack.Pop();
+                string operandOne = Context.OperandStack.Pop();
+                string _operator = Context.OperatorStack.Pop();
+                try
+                {
+                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
+                }
+                catch (DivideByZeroException)
+                {
+                    Context.OperandStack.Push("無法除以零");
+                    Context.State = new ErrorState(Context);
+                }
+            }
+            Context.Result = Context.OperandStack.Peek();
+            Context.OperatorStack.Push(arithmetic);
+            Context.Operator = arithmetic;
+            Context.State = new ComputedState(Context);
+        }
 
         /// <summary>
         /// 等號按鈕方法
         /// </summary>
-        public abstract void EnterEqual();
+        public virtual void EnterEqual()
+        {
+            // 加到運算紀錄裡
+            Context.OperationHistory.Add(Context.Operand);
+            Context.OperationHistory.Add("=");
+
+            Context.OperandStack.Push(Context.Operand);
+            while (Context.OperatorStack.Count > 0)
+            {
+                string operandTwo = Context.OperandStack.Pop();
+                string operandOne = Context.OperandStack.Pop();
+                string _operator = Context.OperatorStack.Pop();
+                try
+                {
+                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
+                }
+                catch (DivideByZeroException)
+                {
+                    Context.OperandStack.Push("無法除以零");
+                    Context.State = new ErrorState(Context);
+                }
+            }
+            Context.Result = Context.OperandStack.Peek();
+        }
 
         /// <summary>
         /// 清除所有按鈕方法
@@ -125,6 +185,11 @@ namespace MyCalculator.Model
         /// <summary>
         /// 根號按鈕方法
         /// </summary>
-        public abstract void EnterSquareRoot();
+        public virtual void EnterSquareRoot()
+        {
+            Context.OperationHistory.Add($"√( {Context.Operand} )");
+            Context.Operand = Math.Sqrt(double.Parse(Context.Operand)).ToString();
+            Context.State = new SquareRootState(Context);
+        }
     }
 }

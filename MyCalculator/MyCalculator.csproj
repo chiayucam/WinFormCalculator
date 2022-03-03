@@ -50,6 +50,7 @@
     <Compile Include="Model\AppendState.cs" />
     <Compile Include="Model\ComputedState.cs" />
     <Compile Include="Model\CalculatorState.cs" />
+    <Compile Include="Model\EqualState.cs" />
     <Compile Include="Model\ErrorState.cs" />
     <Compile Include="Model\Operations.cs" />
     <Compile Include="Model\SquareRootState.cs" />

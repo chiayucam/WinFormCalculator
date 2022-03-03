@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyCalculator.Model
 {
-    class SquareRootState : CalculatorState
+    /// <summary>
+    /// 根號狀態，繼承CalculatorState
+    /// </summary>
+    public class SquareRootState : CalculatorState
     {
         /// <summary>
         /// 建構子
@@ -14,23 +17,6 @@ namespace MyCalculator.Model
         /// <param name="calculatorModel">計算機</param>
         public SquareRootState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
-        }
-
-        /// <summary>
-        /// 將數字附加到運算元後
-        /// </summary>
-        /// <param name="number">數字</param>
-        public override void EnterNumber(string number)
-        {
-            Context.Operand = number;
-            if (number == "0")
-            {
-                Context.State = new StartState(Context);
-            }
-            else
-            {
-                Context.State = new AppendState(Context);
-            }
         }
 
         /// <summary>

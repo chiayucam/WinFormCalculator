@@ -31,6 +31,9 @@ namespace MyCalculator.Model
         /// </summary>
         string Operator { get; set; }
 
+        /// <summary>
+        /// 運算過程紀錄
+        /// </summary>
         List<string> OperationHistory { get; set; }
 
         /// <summary>

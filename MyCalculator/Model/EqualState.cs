@@ -7,41 +7,38 @@ using System.Threading.Tasks;
 namespace MyCalculator.Model
 {
     /// <summary>
-    /// 初始狀態，繼承CalculatorState
+    /// 等號狀態，繼承CalculatorState
     /// </summary>
-    public class StartState : CalculatorState
+    public class EqualState : CalculatorState
     {
         /// <summary>
         /// 建構子
         /// </summary>
         /// <param name="calculatorModel">計算機</param>
-        internal StartState(CalculatorModel calculatorModel) : base(calculatorModel)
+        public EqualState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
         }
 
         /// <summary>
-        /// 轉換至ComputedState
+        /// 根據運算子進行運算
         /// </summary>
-        /// <param name="arithmetic">運算元</param>
+        /// <param name="arithmetic">運算子</param>
         public override void EnterArithmetic(string arithmetic)
         {
-            // 加到運算紀錄裡
-            Context.OperationHistory.Add(Context.Operand);
-            Context.OperationHistory.Add(arithmetic);
+            Context.OperationHistory.Clear();
+            Context.Operand = Context.Result;
 
-            Context.OperandStack.Push(Context.Operand);
-            Context.Operator = arithmetic;
-
-            // 轉換狀態
-            Context.State = new ComputedState(Context);
+            base.EnterArithmetic(arithmetic);
         }
 
         /// <summary>
-        /// 根據運算子堆疊進行運算，直到運算子堆疊清空，並轉換到ComputedState
+        /// 根據運算子堆疊進行運算，直到運算子堆疊清空
         /// </summary>
         public override void EnterEqual()
         {
-            // TODO: Currently same as AppendState EnterEqual()
+            // 更改運算紀錄
+            Context.OperationHistory[0] = Context.Result;
+
             Context.OperandStack.Push(Context.Operand);
             while (Context.OperatorStack.Count > 0)
             {
@@ -59,14 +56,7 @@ namespace MyCalculator.Model
                 }
             }
             Context.Result = Context.OperandStack.Peek();
-            Context.State = new ComputedState(Context);
-        }
-
-        /// <summary>
-        /// 清除當前運算元按鈕，不做任何事
-        /// </summary>
-        public override void EnterClearEntry()
-        {
+            Context.OperatorStack.Push(Context.Operator);
         }
 
         /// <summary>
@@ -74,7 +64,9 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterSquareRoot()
         {
-            Context.Operand = Math.Sqrt(double.Parse(Context.Operand)).ToString();
+            Context.Operand = Context.Result;
+            Context.OperationHistory.Clear();
+            base.EnterSquareRoot();
         }
     }
 }
