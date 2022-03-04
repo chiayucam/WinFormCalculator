@@ -33,7 +33,7 @@ namespace MyCalculator.Model
             {"+", 1 },
             {"-", 1 },
             {"×", 2 },
-            {"÷", 2 }
+            {"÷", 2 },
         };
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MyCalculator.Model
             {"×", Operations.Multiply },
             {"÷", Operations.Divide }
         };
-
+        
         /// <summary>
         /// 數字按鈕方法
         /// </summary>
@@ -64,6 +64,32 @@ namespace MyCalculator.Model
             {
                 Context.State = new AppendState(Context);
             }
+        }
+
+        public virtual void EnterParenthesis(string parenthesis)
+        {
+            // TODO: get rid of if else
+            // check parenthesis valid
+            if (parenthesis == "(")
+            {
+                Context.ParenthesisBalance++;
+            }
+            else if (parenthesis == ")" && Context.ParenthesisBalance > 0)
+            {
+                Context.ParenthesisBalance--;
+            }
+
+            while (Context.ParenthesisBalance > 0)
+            {
+                // 加到運算紀錄裡
+
+                // 運算
+
+
+                // if operatorstack pop == "(" break
+                break;
+            }
+            
         }
 
         /// <summary>

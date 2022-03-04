@@ -327,6 +327,7 @@
             this.LeftParenthesis.TabIndex = 18;
             this.LeftParenthesis.Text = "(";
             this.LeftParenthesis.UseVisualStyleBackColor = true;
+            this.LeftParenthesis.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // RightParenthesis
             // 
@@ -337,6 +338,7 @@
             this.RightParenthesis.TabIndex = 19;
             this.RightParenthesis.Text = ")";
             this.RightParenthesis.UseVisualStyleBackColor = true;
+            this.RightParenthesis.Click += new System.EventHandler(this.CalculatorButtonOnClick);
             // 
             // CalculatorForm
             // 

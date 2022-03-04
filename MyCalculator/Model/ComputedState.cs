@@ -20,23 +20,6 @@ namespace MyCalculator.Model
         }
 
         /// <summary>
-        /// 將數字附加到運算元後，如輸入"0"進入StartState，如輸入"1~9"進入AppendState
-        /// </summary>
-        /// <param name="number">數字</param>
-        public override void EnterNumber(string number)
-        {
-            Context.Operand = number;
-            if (number == "0")
-            {
-                Context.State = new StartState(Context);
-            }
-            else
-            {
-                Context.State = new AppendState(Context);
-            }
-        }
-
-        /// <summary>
         /// 替換掉運算子
         /// </summary>
         /// <param name="arithmetic">運算子</param>
@@ -48,6 +31,12 @@ namespace MyCalculator.Model
 
             // 更改運算紀錄
             Context.OperationHistory[Context.OperationHistory.Count - 1] = arithmetic;
+        }
+
+        public override void EnterEqual()
+        {
+            //Context.Operand = Context.Result;
+            base.EnterEqual();
         }
 
         /// <summary>

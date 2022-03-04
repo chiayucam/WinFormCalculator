@@ -23,6 +23,7 @@ namespace MyCalculator.Model
             OperatorStack = new Stack<string>();
             OperandStack = new Stack<string>();
             OperationHistory = new List<string>();
+            ParenthesisBalance = 0;
         }
 
         /// <summary>
@@ -59,6 +60,8 @@ namespace MyCalculator.Model
         /// 運算過程紀錄
         /// </summary>
         public List<string> OperationHistory { get; set; }
+
+        public int ParenthesisBalance { get; set; }
 
         /// <summary>
         /// 設定運算元
@@ -98,6 +101,7 @@ namespace MyCalculator.Model
             OperandStack.Clear();
             OperatorStack.Clear();
             OperationHistory.Clear();
+            ParenthesisBalance = 0;
         }
     }
 }

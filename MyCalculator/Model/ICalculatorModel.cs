@@ -36,6 +36,8 @@ namespace MyCalculator.Model
         /// </summary>
         List<string> OperationHistory { get; set; }
 
+        int ParenthesisBalance { get; set; }
+
         /// <summary>
         /// 設定運算元
         /// </summary>

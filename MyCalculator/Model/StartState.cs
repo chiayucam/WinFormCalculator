@@ -53,13 +53,5 @@ namespace MyCalculator.Model
         public override void EnterClearEntry()
         {
         }
-
-        /// <summary>
-        /// 將當前運算元開根號
-        /// </summary>
-        public override void EnterSquareRoot()
-        {
-            Context.Operand = Math.Sqrt(double.Parse(Context.Operand)).ToString();
-        }
     }
 }
