@@ -201,7 +201,7 @@ namespace MyCalculator.Model
         {
             Context.OperationHistory.Add($"√( {Context.Operand} )");
             Context.Operand = Math.Sqrt(double.Parse(Context.Operand)).ToString();
-            Context.State = new SquareRootState(Context);
+            Context.State = new UnaryOperatorState(Context);
         }
     }
 }

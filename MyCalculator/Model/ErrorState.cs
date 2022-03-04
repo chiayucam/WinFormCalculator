@@ -54,6 +54,13 @@ namespace MyCalculator.Model
         }
 
         /// <summary>
+        /// 輸入正負號不做任何事
+        /// </summary>
+        public override void EnterSign()
+        {
+        }
+
+        /// <summary>
         /// 輸入小數點不做任何事
         /// </summary>
         /// <param name="decimalPoint">小數點</param>

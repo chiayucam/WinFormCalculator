@@ -19,6 +19,12 @@ namespace MyCalculator.Model
         {
         }
 
+        public override void EnterArithmetic(string arithmetic)
+        {
+            Context.Operand = decimal.Parse(Context.Operand).ToString("G9");
+            base.EnterArithmetic(arithmetic);
+        }
+
         /// <summary>
         /// 覆寫小數點方法，不做任何事
         /// </summary>

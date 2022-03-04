@@ -9,13 +9,13 @@ namespace MyCalculator.Model
     /// <summary>
     /// 根號狀態，繼承CalculatorState
     /// </summary>
-    public class SquareRootState : CalculatorState
+    public class UnaryOperatorState : CalculatorState
     {
         /// <summary>
         /// 建構子
         /// </summary>
         /// <param name="calculatorModel">計算機</param>
-        public SquareRootState(CalculatorModel calculatorModel) : base(calculatorModel)
+        public UnaryOperatorState(CalculatorModel calculatorModel) : base(calculatorModel)
         {
         }
 
@@ -94,6 +94,24 @@ namespace MyCalculator.Model
         {
         }
 
+        public override void EnterSign()
+        {
+            string lastOperationHistory = Context.OperationHistory[Context.OperationHistory.Count - 1];
+            Context.OperationHistory[Context.OperationHistory.Count - 1] = "negate( " + lastOperationHistory + " )";
+            base.EnterSign();
+        }
+
+        /// <summary>
+        /// 小數點按鈕方法
+        /// </summary>
+        /// <param name="decimalPoint">小數點</param>
+        public override void EnterDecimalPoint(string decimalPoint)
+        {
+            Context.OperationHistory.RemoveAt(Context.OperationHistory.Count - 1);
+            Context.ResetOperand();
+            base.EnterDecimalPoint(decimalPoint);
+        }
+
         /// <summary>
         /// 將當前運算元開根號
         /// </summary>
@@ -103,7 +121,6 @@ namespace MyCalculator.Model
             Context.OperationHistory[Context.OperationHistory.Count - 1] = "√( " + lastOperationHistory + " )";
 
             Context.Operand = Math.Sqrt(double.Parse(Context.Operand)).ToString();
-            Context.State = new SquareRootState(Context);
         }
     }
 }

@@ -51,11 +51,17 @@ namespace MyCalculator.Model
         }
 
         /// <summary>
-        /// 覆寫退格按鈕方法
+        /// 覆寫退格按鈕方法，不做任何事
         /// </summary>
         public override void EnterBackSpace()
         {
-            // 不做任何事
+        }
+
+        public override void EnterSign()
+        {
+            Context.OperationHistory.Add($"negate( {Context.Operand} )");
+            base.EnterSign();
+            Context.State = new UnaryOperatorState(Context);
         }
 
         /// <summary>
@@ -66,16 +72,6 @@ namespace MyCalculator.Model
         {
             Context.ResetOperand();
             base.EnterDecimalPoint(decimalPoint);
-        }
-
-        /// <summary>
-        /// 將運算元取根號
-        /// </summary>
-        public override void EnterSquareRoot()
-        {
-            Context.OperationHistory.Add($"√({Context.Operand})");
-            Context.Operand = Math.Sqrt(double.Parse(Context.Result)).ToString();
-            Context.State = new SquareRootState(Context);
         }
     }
 }
