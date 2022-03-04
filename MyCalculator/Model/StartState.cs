@@ -43,6 +43,7 @@ namespace MyCalculator.Model
             //}
             //Context.Result = Context.OperandStack.Peek();
             //Context.State = new EqualState(Context);
+
             base.EnterEqual();
         }
 

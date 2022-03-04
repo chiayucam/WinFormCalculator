@@ -28,34 +28,39 @@ namespace MyCalculator.Model
             // 加到運算紀錄裡
             Context.OperationHistory.Add(arithmetic);
 
+            // 運算
             Context.OperandStack.Push(Context.Operand);
             while (Context.OperatorStack.Count > 0 && ArithmeticPrecedence[arithmetic] <= ArithmeticPrecedence[Context.OperatorStack.Peek()])
             {
                 string operandTwo = Context.OperandStack.Pop();
                 string operandOne = Context.OperandStack.Pop();
                 string _operator = Context.OperatorStack.Pop();
-                try
-                {
-                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-                }
-                catch (DivideByZeroException)
-                {
-                    Context.OperandStack.Push("無法除以零");
-                    Context.State = new ErrorState(Context);
-                }
+                Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
             }
+
             Context.Result = Context.OperandStack.Peek();
+            // TODO: change push operatorstack action to another place and make it push Context.Operator
             Context.OperatorStack.Push(arithmetic);
-            Context.State = new ComputedState(Context);
+            Context.Operator = arithmetic;
+
+            // 改變狀態
+            // TODO: make states singleton and change to tenary operator
+            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            {
+                Context.State = new ErrorState(Context);
+            }
+            else
+            {
+                Context.State = new ComputedState(Context);
+            }
         }
 
         /// <summary>
-        /// 根據運算子堆疊進行運算，直到運算子堆疊清空，並轉換到ComputedState
+        /// 等號按鈕方法
         /// </summary>
         public override void EnterEqual()
         {
             // 加到運算紀錄裡
-            Context.OperationHistory.Add(Context.Operand);
             Context.OperationHistory.Add("=");
 
             Context.OperandStack.Push(Context.Operand);
@@ -64,18 +69,29 @@ namespace MyCalculator.Model
                 string operandTwo = Context.OperandStack.Pop();
                 string operandOne = Context.OperandStack.Pop();
                 string _operator = Context.OperatorStack.Pop();
-                try
-                {
-                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-                }
-                catch (DivideByZeroException)
-                {
-                    Context.OperandStack.Push("無法除以零");
-                    Context.State = new ErrorState(Context);
-                }
+                Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
             }
+
             Context.Result = Context.OperandStack.Peek();
-            Context.State = new ComputedState(Context);
+            Context.OperatorStack.Push(Context.Operator);
+
+            // 改變狀態
+            // TODO: make states singleton and change to tenary operator
+            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            {
+                Context.State = new ErrorState(Context);
+            }
+            else
+            {
+                Context.State = new EqualState(Context);
+            }
+        }
+
+        /// <summary>
+        /// 退格鍵不做任何事
+        /// </summary>
+        public override void EnterBackSpace()
+        {
         }
 
         /// <summary>
@@ -83,7 +99,9 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterSquareRoot()
         {
-            Context.OperationHistory.Add($"√({Context.Operand})");
+            string lastOperationHistory = Context.OperationHistory[Context.OperationHistory.Count - 1];
+            Context.OperationHistory[Context.OperationHistory.Count - 1] = "√( " + lastOperationHistory + " )";
+
             Context.Operand = Math.Sqrt(double.Parse(Context.Operand)).ToString();
             Context.State = new SquareRootState(Context);
         }

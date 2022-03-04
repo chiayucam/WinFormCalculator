@@ -31,8 +31,9 @@ namespace MyCalculator.Model
         /// <param name="arithmetic">運算子</param>
         public override void EnterArithmetic(string arithmetic)
         {
-            Context.OperationHistory.Clear();
-            Context.Operand = Context.Result;
+            string newOperand = Context.Result;
+            Context.ResetAll();
+            Context.Operand = newOperand;
 
             base.EnterArithmetic(arithmetic);
         }

@@ -189,9 +189,9 @@
             // CurrentDisplay
             // 
             this.CurrentDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CurrentDisplay.Location = new System.Drawing.Point(90, 74);
+            this.CurrentDisplay.Location = new System.Drawing.Point(84, 74);
             this.CurrentDisplay.Name = "CurrentDisplay";
-            this.CurrentDisplay.Size = new System.Drawing.Size(234, 76);
+            this.CurrentDisplay.Size = new System.Drawing.Size(240, 76);
             this.CurrentDisplay.TabIndex = 6;
             this.CurrentDisplay.Text = "0";
             this.CurrentDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

@@ -73,8 +73,9 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterSquareRoot()
         {
+            Context.OperationHistory.Add($"√({Context.Operand})");
             Context.Operand = Math.Sqrt(double.Parse(Context.Result)).ToString();
-            Context.State = new StartState(Context);
+            Context.State = new SquareRootState(Context);
         }
     }
 }
