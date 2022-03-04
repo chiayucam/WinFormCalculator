@@ -99,6 +99,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\ParenthesisButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\SignButton.cs">
       <SubType>Component</SubType>
     </Compile>
