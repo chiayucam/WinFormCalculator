@@ -73,10 +73,12 @@ namespace MyCalculator.Model
             if (parenthesis == "(")
             {
                 Context.ParenthesisBalance++;
+                Context.OperationHistory.Add("(");
             }
             else if (parenthesis == ")" && Context.ParenthesisBalance > 0)
             {
                 Context.ParenthesisBalance--;
+                Context.OperationHistory.Add(")");
             }
 
             while (Context.ParenthesisBalance > 0)
@@ -89,7 +91,6 @@ namespace MyCalculator.Model
                 // if operatorstack pop == "(" break
                 break;
             }
-            
         }
 
         /// <summary>
