@@ -131,6 +131,7 @@ namespace MyCalculator.Presenter
 
             // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Operand;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 
         /// <summary>
