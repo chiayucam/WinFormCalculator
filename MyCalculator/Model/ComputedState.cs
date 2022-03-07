@@ -20,6 +20,26 @@ namespace MyCalculator.Model
         }
 
         /// <summary>
+        /// 輸入左括號重置運算元
+        /// </summary>
+        /// <param name="parenthesis">左括號</param>
+        public override void EnterLeftParenthesis(string parenthesis)
+        {
+            Context.ResetOperand();
+            base.EnterLeftParenthesis(parenthesis);
+        }
+
+        /// <summary>
+        /// 覆寫右括號方法
+        /// </summary>
+        /// <param name="parenthesis">右括號</param>
+        public override void EnterRightParenthesis(string parenthesis)
+        {
+            Context.Operand = Context.Result;
+            base.EnterRightParenthesis(parenthesis);
+        }
+
+        /// <summary>
         /// 替換掉運算子
         /// </summary>
         /// <param name="arithmetic">運算子</param>
@@ -33,9 +53,11 @@ namespace MyCalculator.Model
             Context.OperationHistory[Context.OperationHistory.Count - 1] = arithmetic;
         }
 
+        /// <summary>
+        /// 覆寫等號按鈕方法
+        /// </summary>
         public override void EnterEqual()
         {
-            //Context.Operand = Context.Result;
             base.EnterEqual();
         }
 
@@ -46,6 +68,9 @@ namespace MyCalculator.Model
         {
         }
 
+        /// <summary>
+        /// 覆寫正負號按鈕方法，顯示不同
+        /// </summary>
         public override void EnterSign()
         {
             Context.OperationHistory.Add($"negate( {Context.Operand} )");

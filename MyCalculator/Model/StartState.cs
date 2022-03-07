@@ -24,27 +24,8 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterEqual()
         {
-            // TODO: Currently same as AppendState EnterEqual()
-            //Context.OperandStack.Push(Context.Operand);
-            //while (Context.OperatorStack.Count > 0)
-            //{
-            //    string operandTwo = Context.OperandStack.Pop();
-            //    string operandOne = Context.OperandStack.Pop();
-            //    string _operator = Context.OperatorStack.Pop();
-            //    try
-            //    {
-            //        Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
-            //    }
-            //    catch (DivideByZeroException)
-            //    {
-            //        Context.OperandStack.Push("無法除以零");
-            //        Context.State = new ErrorState(Context);
-            //    }
-            //}
-            //Context.Result = Context.OperandStack.Peek();
-            //Context.State = new EqualState(Context);
-
             base.EnterEqual();
+            Context.State = new StartState(Context);
         }
 
         /// <summary>

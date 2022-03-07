@@ -19,6 +19,10 @@ namespace MyCalculator.Model
         {
         }
 
+        /// <summary>
+        /// 覆寫四則運算方法，不要顯示.0
+        /// </summary>
+        /// <param name="arithmetic">運算子</param>
         public override void EnterArithmetic(string arithmetic)
         {
             Context.Operand = decimal.Parse(Context.Operand).ToString("G9");

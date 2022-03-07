@@ -19,6 +19,10 @@ namespace MyCalculator.Model
         {
         }
 
+        /// <summary>
+        /// 覆寫數字按鈕方法，先清空所有
+        /// </summary>
+        /// <param name="number">數字</param>
         public override void EnterNumber(string number)
         {
             Context.ResetAll();
@@ -43,7 +47,6 @@ namespace MyCalculator.Model
         /// </summary>
         public override void EnterEqual()
         {
-            // TODO: 0= = = = = problem
             // 更改運算紀錄，清除前面紀錄只顯示兩個運算元及一個運算子
             Context.OperationHistory.Clear();
             Context.OperationHistory.Add(Context.Result);
@@ -64,7 +67,6 @@ namespace MyCalculator.Model
             Context.OperatorStack.Push(Context.Operator);
 
             // 改變狀態
-            // TODO: make states singleton and change to tenary operator
             if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);

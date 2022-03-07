@@ -34,6 +34,7 @@ namespace MyCalculator.Model
             {"-", 1 },
             {"×", 2 },
             {"÷", 2 },
+            {"(", 0 }
         };
 
         /// <summary>
@@ -66,29 +67,63 @@ namespace MyCalculator.Model
             }
         }
 
-        public virtual void EnterParenthesis(string parenthesis)
+        /// <summary>
+        /// 左括號方法
+        /// </summary>
+        /// <param name="parenthesis">左括號</param>
+        public virtual void EnterLeftParenthesis(string parenthesis)
         {
-            // TODO: get rid of if else
-            // check parenthesis valid
-            if (parenthesis == "(")
-            {
-                Context.ParenthesisBalance++;
-                Context.OperationHistory.Add("(");
-            }
-            else if (parenthesis == ")" && Context.ParenthesisBalance > 0)
-            {
-                Context.ParenthesisBalance--;
-                Context.OperationHistory.Add(")");
-            }
+            // 加到運算紀錄裡
+            Context.OperationHistory.Add(parenthesis);
 
+            // 總括號數量加一
+            Context.ParenthesisBalance++;
+
+            // 將括號加入OperatorStack
+            Context.OperatorStack.Push(parenthesis);
+        }
+
+        /// <summary>
+        /// 右括號方法
+        /// </summary>
+        /// <param name="parenthesis">右括號</param>
+        public virtual void EnterRightParenthesis(string parenthesis)
+        {
+            Context.OperandStack.Push(Context.Operand);
+
+            // 避免")" 比 "(" 多
             while (Context.ParenthesisBalance > 0)
             {
                 // 加到運算紀錄裡
+                Context.OperationHistory.Add(Context.Operand);
+                Context.OperationHistory.Add(parenthesis);
+
+                // 總括號數量減一
+                Context.ParenthesisBalance--;
 
                 // 運算
+                while (Context.OperatorStack.Peek() != "(")
+                {
+                    string operandTwo = Context.OperandStack.Pop();
+                    string operandOne = Context.OperandStack.Pop();
+                    string _operator = Context.OperatorStack.Pop();
+                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
+                }
 
+                Context.Result = Context.OperandStack.Peek();
 
-                // if operatorstack pop == "(" break
+                // 從OperatorStack移除 "("
+                Context.OperatorStack.Pop();
+
+                // 改變狀態
+                if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+                {
+                    Context.State = new ErrorState(Context);
+                }
+                else
+                {
+                    Context.State = new ParenthesisState(Context);
+                }
                 break;
             }
         }
@@ -114,12 +149,11 @@ namespace MyCalculator.Model
             }
 
             Context.Result = Context.OperandStack.Peek();
-            // TODO: change push operatorstack action to another place and make it push Context.Operator
+
             Context.OperatorStack.Push(arithmetic);
             Context.Operator = arithmetic;
 
             // 改變狀態
-            // TODO: make states singleton and change to tenary operator
             if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);
@@ -137,9 +171,43 @@ namespace MyCalculator.Model
         {
             // 加到運算紀錄裡
             Context.OperationHistory.Add(Context.Operand);
-            Context.OperationHistory.Add("=");
 
             Context.OperandStack.Push(Context.Operand);
+
+            // 把缺少的")"補上
+            while (Context.ParenthesisBalance > 0)
+            {
+                // 加到運算紀錄裡
+                Context.OperationHistory.Add(")");
+
+                // 總括號數量減一
+                Context.ParenthesisBalance--;
+
+                // 運算
+                while (Context.OperatorStack.Peek() != "(")
+                {
+                    string operandTwo = Context.OperandStack.Pop();
+                    string operandOne = Context.OperandStack.Pop();
+                    string _operator = Context.OperatorStack.Pop();
+                    Context.OperandStack.Push(OperationDict[_operator](operandOne, operandTwo));
+                }
+
+                Context.Result = Context.OperandStack.Peek();
+
+                // 從OperatorStack移除 "("
+                Context.OperatorStack.Pop();
+
+                // 改變狀態
+                if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+                {
+                    Context.State = new ErrorState(Context);
+                }
+            }
+
+            // 加到運算紀錄裡
+            Context.OperationHistory.Add("=");
+
+            // 運算沒有在括號內的數字
             while (Context.OperatorStack.Count > 0)
             {
                 string operandTwo = Context.OperandStack.Pop();
@@ -152,7 +220,6 @@ namespace MyCalculator.Model
             Context.OperatorStack.Push(Context.Operator);
 
             // 改變狀態
-            // TODO: make states singleton and change to tenary operator
             if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);

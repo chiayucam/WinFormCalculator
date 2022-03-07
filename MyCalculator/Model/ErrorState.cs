@@ -20,13 +20,29 @@ namespace MyCalculator.Model
         }
 
         /// <summary>
-        /// 輸入數字不做任何事
+        /// 輸入數字重置
         /// </summary>
         /// <param name="number">數字</param>
         public override void EnterNumber(string number)
         {
             Context.ResetAll();
             base.EnterNumber(number);
+        }
+
+        /// <summary>
+        /// 輸入左括號不做任何事
+        /// </summary>
+        /// <param name="parenthesis">左括號</param>
+        public override void EnterLeftParenthesis(string parenthesis)
+        {
+        }
+
+        /// <summary>
+        /// 輸入右括號不做任何事
+        /// </summary>
+        /// <param name="parenthesis">右括號</param>
+        public override void EnterRightParenthesis(string parenthesis)
+        {
         }
 
         /// <summary>

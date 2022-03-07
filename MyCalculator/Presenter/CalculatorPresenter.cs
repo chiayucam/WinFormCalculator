@@ -51,16 +51,30 @@ namespace MyCalculator.Presenter
         }
 
         /// <summary>
-        /// 更新view，括號按鈕
+        /// 更新view，左括號按鈕
         /// </summary>
-        /// <param name="button">ParenthesisButton型態的括號按鈕</param>
-        internal void UpdateCalculatorView(ParenthesisButton button)
+        /// <param name="button">ParenthesisButton型態的左括號按鈕</param>
+        internal void UpdateCalculatorView(LeftParenthesisButton button)
         {
             // 呼叫State方法
-            CalculatorModel.State.EnterParenthesis(button.Text);
+            CalculatorModel.State.EnterLeftParenthesis(button.Text);
 
             // 顯示
             CalculatorView.LowerLabel = CalculatorModel.Operand;
+            CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
+        }
+
+        /// <summary>
+        /// 更新view，右括號按鈕
+        /// </summary>
+        /// <param name="button">ParenthesisButton型態的右括號按鈕</param>
+        internal void UpdateCalculatorView(RightParenthesisButton button)
+        {
+            // 呼叫State方法
+            CalculatorModel.State.EnterRightParenthesis(button.Text);
+
+            // 顯示
+            CalculatorView.LowerLabel = CalculatorModel.Result;
             CalculatorView.UpperLabel = string.Join(" ", CalculatorModel.OperationHistory);
         }
 

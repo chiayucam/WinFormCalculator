@@ -51,8 +51,8 @@
             this.NumpadTwo = new MyCalculator.View.NumberButton();
             this.NumpadOne = new MyCalculator.View.NumberButton();
             this.NumpadZero = new MyCalculator.View.NumberButton();
-            this.LeftParenthesis = new MyCalculator.View.ParenthesisButton();
-            this.RightParenthesis = new MyCalculator.View.ParenthesisButton();
+            this.LeftParenthesis = new MyCalculator.View.LeftParenthesisButton();
+            this.RightParenthesis = new MyCalculator.View.RightParenthesisButton();
             this.SuspendLayout();
             // 
             // SquareRootButton1
@@ -335,7 +335,7 @@
             this.RightParenthesis.Location = new System.Drawing.Point(161, 223);
             this.RightParenthesis.Name = "RightParenthesis";
             this.RightParenthesis.Size = new System.Drawing.Size(80, 60);
-            this.RightParenthesis.TabIndex = 19;
+            this.RightParenthesis.TabIndex = 20;
             this.RightParenthesis.Text = ")";
             this.RightParenthesis.UseVisualStyleBackColor = true;
             this.RightParenthesis.Click += new System.EventHandler(this.CalculatorButtonOnClick);
@@ -403,8 +403,8 @@
         private DecimalPointButton DecimalPoint;
         private EqualButton Equal;
         private SquareRootButton SquareRootButton1;
-        private ParenthesisButton LeftParenthesis;
-        private ParenthesisButton RightParenthesis;
+        private LeftParenthesisButton LeftParenthesis;
+        private RightParenthesisButton RightParenthesis;
     }
 }
 

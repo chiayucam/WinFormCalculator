@@ -9,7 +9,7 @@ namespace MyCalculator.View
     /// <summary>
     /// 括號按鈕，繼承CalculatorButton
     /// </summary>
-    internal class ParenthesisButton : CalculatorButton
+    internal class LeftParenthesisButton : CalculatorButton
     {
     }
 }

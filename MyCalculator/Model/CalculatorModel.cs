@@ -61,6 +61,9 @@ namespace MyCalculator.Model
         /// </summary>
         public List<string> OperationHistory { get; set; }
 
+        /// <summary>
+        /// 括號總數
+        /// </summary>
         public int ParenthesisBalance { get; set; }
 
         /// <summary>

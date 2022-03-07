@@ -53,6 +53,7 @@
     <Compile Include="Model\EqualState.cs" />
     <Compile Include="Model\ErrorState.cs" />
     <Compile Include="Model\Operations.cs" />
+    <Compile Include="Model\ParenthesisState.cs" />
     <Compile Include="Model\UnaryOperatorState.cs" />
     <Compile Include="Model\StartState.cs" />
     <Compile Include="View\ArithmeticButton.cs">
@@ -99,7 +100,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\ParenthesisButton.cs">
+    <Compile Include="View\LeftParenthesisButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\RightParenthesisButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\SignButton.cs">

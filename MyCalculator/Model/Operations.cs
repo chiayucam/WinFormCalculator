@@ -16,6 +16,9 @@ namespace MyCalculator.Model
         /// </summary>
         private static readonly string DECIMAL_TO_STRING_FORMAT = "G9";
 
+        /// <summary>
+        /// 除零錯誤顯示訊息
+        /// </summary>
         public static readonly string DIVIDE_BY_ZERO_ERROR_MESSAGE = "無法除以零";
 
         /// <summary>
