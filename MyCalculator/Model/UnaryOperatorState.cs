@@ -44,7 +44,7 @@ namespace MyCalculator.Model
             Context.Operator = arithmetic;
 
             // 改變狀態
-            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            if (Context.Result == ArithmeticOperations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);
             }
@@ -75,7 +75,7 @@ namespace MyCalculator.Model
             Context.OperatorStack.Push(Context.Operator);
 
             // 改變狀態
-            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            if (Context.Result == ArithmeticOperations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);
             }

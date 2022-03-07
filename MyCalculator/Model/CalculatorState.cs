@@ -42,10 +42,10 @@ namespace MyCalculator.Model
         /// </summary>
         public static readonly Dictionary<string, Func<string, string, string>> OperationDict = new Dictionary<string, Func<string, string, string>>
         {
-            {"+", Operations.Add },
-            {"-", Operations.Subtract },
-            {"×", Operations.Multiply },
-            {"÷", Operations.Divide }
+            {"+", ArithmeticOperations.Add },
+            {"-", ArithmeticOperations.Subtract },
+            {"×", ArithmeticOperations.Multiply },
+            {"÷", ArithmeticOperations.Divide }
         };
         
         /// <summary>
@@ -116,7 +116,7 @@ namespace MyCalculator.Model
                 Context.OperatorStack.Pop();
 
                 // 改變狀態
-                if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+                if (Context.Result == ArithmeticOperations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
                 {
                     Context.State = new ErrorState(Context);
                 }
@@ -154,7 +154,7 @@ namespace MyCalculator.Model
             Context.Operator = arithmetic;
 
             // 改變狀態
-            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            if (Context.Result == ArithmeticOperations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);
             }
@@ -198,7 +198,7 @@ namespace MyCalculator.Model
                 Context.OperatorStack.Pop();
 
                 // 改變狀態
-                if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+                if (Context.Result == ArithmeticOperations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
                 {
                     Context.State = new ErrorState(Context);
                 }
@@ -220,7 +220,7 @@ namespace MyCalculator.Model
             Context.OperatorStack.Push(Context.Operator);
 
             // 改變狀態
-            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            if (Context.Result == ArithmeticOperations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);
             }

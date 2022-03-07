@@ -14,7 +14,7 @@ namespace MyCalculator.Model
         /// <summary>
         /// 計算機狀態模式
         /// </summary>
-        CalculatorState State { get; set; }
+        CalculatorState State { get;  set; }
 
         /// <summary>
         /// 運算元

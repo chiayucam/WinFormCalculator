@@ -52,7 +52,7 @@
     <Compile Include="Model\CalculatorState.cs" />
     <Compile Include="Model\EqualState.cs" />
     <Compile Include="Model\ErrorState.cs" />
-    <Compile Include="Model\Operations.cs" />
+    <Compile Include="Model\ArithmeticOperations.cs" />
     <Compile Include="Model\ParenthesisState.cs" />
     <Compile Include="Model\UnaryOperatorState.cs" />
     <Compile Include="Model\StartState.cs" />

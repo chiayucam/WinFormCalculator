@@ -9,7 +9,7 @@ namespace MyCalculator.Model
     /// <summary>
     /// 運算方法
     /// </summary>
-    public static class Operations
+    public static class ArithmeticOperations
     {
         /// <summary>
         /// 轉換格式

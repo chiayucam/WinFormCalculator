@@ -67,7 +67,7 @@ namespace MyCalculator.Model
             Context.OperatorStack.Push(Context.Operator);
 
             // 改變狀態
-            if (Context.Result == Operations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
+            if (Context.Result == ArithmeticOperations.DIVIDE_BY_ZERO_ERROR_MESSAGE)
             {
                 Context.State = new ErrorState(Context);
             }
@@ -90,6 +90,20 @@ namespace MyCalculator.Model
         {
             Context.ResetAll();
             base.EnterDecimalPoint(decimalPoint);
+        }
+
+        /// <summary>
+        /// 覆寫正負號按鈕方法，顯示不同
+        /// </summary>
+        public override void EnterSign()
+        {
+            string newOperand = Context.Result;
+            Context.ResetAll();
+            Context.Operand = newOperand;
+
+            Context.OperationHistory.Add($"negate( {Context.Operand} )");
+            base.EnterSign();
+            Context.State = new UnaryOperatorState(Context);
         }
 
         /// <summary>
